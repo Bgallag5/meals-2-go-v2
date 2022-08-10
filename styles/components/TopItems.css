@@ -1,0 +1,10 @@
+.btn__filter--active{
+    background: #f8db62 !important;
+    color: black;
+}
+
+.filter__hidden{
+    width: 0%;
+    display: none;
+    visibility: none;
+}

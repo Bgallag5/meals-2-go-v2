@@ -1,0 +1,108 @@
+:root {
+  --slider-padding: 5rem;
+  --slider-gap: 0.5rem;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  gap: var(--slider-gap);
+  height: auto;
+  /* width: 100% - width of 2 buttons */
+  width: calc(100% - 2 * var(--slider-padding));
+  position: relative;
+  padding: 1rem 0rem;
+  transition: all 1s ease-in-out;
+  /* transform: translateX(calc(-100% - 6 * var(--slider-gap))); */
+}
+
+
+
+.slider-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 calc(25% - var(--slider-gap)) ;
+  max-width: 25%;
+
+  background-color: lightpink;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+}
+
+.slider-item:nth-child(even) {
+    background-color: lightgreen;
+  }
+
+.slider-item:hover {
+    transform: scale(103%);
+  z-index: 600;
+}
+
+/* .slider:hover ~ .slider-btn  -- on slider:hover target all (~) siblings */
+.slider:hover ~ .slider-btn{
+    z-index: 1;
+}
+
+.slider-btn {
+  width: var(--slider-padding);
+  height: calc(100% - 2rem);
+  z-index: 40;
+  font-size: 3rem;
+  background:  rgba(256, 256, 256, .5);
+  /* background: transparent; */
+  opacity: 0.5;
+  cursor: pointer !important;
+}
+
+
+.slider-btn > * {
+    z-index: 45;
+    /* pointer-events: none; - prevents child from blocking onClick of parent */
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.slider-btn:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.9;
+}
+
+.slider-btn:hover > * {
+    transition: all 0.3s ease-in-out;
+    transform: scale(150%);
+}
+
+/* if btn disabled, no hover style */
+.slider-btn:disabled:hover{
+    opacity: 0.5;
+    transition: none;
+}
+.slider-btn:disabled:hover > *{
+    transform: scale(100%);
+    transition: none;
+}
+
+.slider-dot{
+    height: .3rem;
+    width: 1rem;
+    background-color: white;
+    border-radius: 50rem;
+    border: 1px solid rgb(0, 0, 0, .8);
+    overflow: hidden;
+    transition:  all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.slider-dot--active{
+    background-color: green;
+}

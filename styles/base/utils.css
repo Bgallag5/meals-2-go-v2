@@ -1,0 +1,21 @@
+
+.test{
+    outline: 1px solid red;
+    background-color: lightblue;
+}
+
+
+.modal-hidden{
+    /* display: none; */
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+/* prevent scroll while popup is active */
+.popup-active{
+    height: 100%;
+    overflow: hidden;
+}
+
+

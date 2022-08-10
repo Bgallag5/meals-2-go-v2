@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .btn {
+    @apply disabled:opacity-70 disabled:active:translate-y-0 bg-black justify-between text-white rounded-full flex items-center h-auto w-auto px-6 py-2 active:translate-y-[1px];
+  }
+
+  .btn-white {
+    @apply bg-white text-black shadow-md shadow-black;
+  }
+  .btn--add-item {
+    @apply bg-secondary text-black shadow-sm shadow-black p-0 w-full h-8 flex items-center justify-center;
+  }
+  .btn-cookie{
+    @apply  bg-white px-3 h-[2.5rem] py-2 rounded-md active:translate-y-[1px] cursor-pointer;
+  }
+  .btn-checkout{
+    @apply bg-primary text-white rounded-full w-2/3 h-10 disabled:opacity-50 cursor-pointer ;
+  }
+  .btn-cart-quantity{
+    @apply bg-primary text-3xl h-10 outline outline-[1px] flex justify-center items-center w-12 outline-black/50 shadow-sm shadow-black/20 px-2 py-2 rounded-full active:translate-y-[1px];
+  }
+  .btn-cart-delete{
+    @apply bg-white w-24 text-black border-black/50 border shadow-sm shadow-black/20 h-10 px-2 py-2 rounded-full active:translate-y-[1px];
+  }
+}
+
+

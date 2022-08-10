@@ -1,0 +1,95 @@
+.header-menu {
+  background: black;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2px;
+  width: 2rem;
+  cursor: pointer;
+}
+
+.header-menu::before,
+.header-menu::after {
+  content: "";
+  position: absolute;
+  width: 2rem;
+  height: 2px;
+  background: black;
+}
+
+.header-menu:before {
+  top: -10px;
+}
+.header-menu:after {
+  top: 10px;
+}
+
+.input__toggle-delivery {
+  visibility: hidden;
+  width: 100%;
+}
+
+.label__toggle-delivery {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 8rem;
+  height: auto;
+  border-radius: 500px;
+  font-size: small;
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.label__toggle-delivery::before {
+  content: "";
+  position: absolute;
+  display: flex;
+  top: 0;
+  /* left: 0; */
+  margin-right: 50%;
+  height: 100%;
+  width: 50%;
+  background-color: black;
+  border-radius: 500px;
+  z-index: 1;
+  transition: all 0.3s ease-in;
+}
+
+.label__toggle-delivery > p {
+  width: 50%;
+  margin: 0px 0px;
+  border-radius: 500px;
+  padding: 6px;
+  transition: color 0.3s ease-in;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.label__toggle-delivery > #delivery {
+  color: white;
+}
+.label__toggle-delivery > #pickup {
+  color: black;
+}
+
+.input__toggle-delivery:checked + .label__toggle-delivery > #delivery {
+  color: black;
+}
+.input__toggle-delivery:checked + .label__toggle-delivery > #pickup {
+  color: white;
+}
+
+.input__toggle-delivery:checked + .label__toggle-delivery::before {
+  margin-left: 100%;
+}
+
+
+#search-results::-webkit-scrollbar{
+  display: none;
+}

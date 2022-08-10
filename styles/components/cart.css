@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .cart-modal-backdrop {
+    @apply bg-black/60 transition-all duration-300 fixed h-screen w-screen overflow-hidden top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50;
+  }
+}
+
+
+.cart{
+    transform: translateX(110%);
+    opacity: 0;
+    visibility: hidden;
+    transition:  all .3s ease-in-out;
+}
+
+.cart-visible{
+    animation: cartSlideIn .3s ease-in-out;
+    transform: translateX(0%);
+    opacity: 100;
+    visibility: visible;
+}
+
+@keyframes cartSlideIn {
+    0%{
+        visibility: visible;
+        opacity: 100;
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
