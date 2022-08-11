@@ -7,11 +7,14 @@ export const reducer = (state, { type, payload }) => {
   const calcCartTotal = (items) => {
     let total = items.reduce((acc, cur) => {
       let discount = cur.categoryDiscount || cur.itemDiscount;
+      //if no discount
       if (!discount) {
         let itemTotal =
           Number(cur.price.replace("$", "")) * Number(cur.quantity);
         return acc + itemTotal;
-      } else if (discount) {
+      }
+      //if discount, apply to cart total
+      else if (discount) {
         let itemTotal = Number(
           cur.price.replace("$", "") * Number(cur.quantity - 1) +
             cur.price.replace("$", "") * ((100 - discount) / 100)
@@ -19,8 +22,6 @@ export const reducer = (state, { type, payload }) => {
         return acc + itemTotal;
       }
     }, 0);
-    console.log("TOTAL");
-    console.log(total);
     return Number(total.toFixed(2));
   };
 
@@ -30,7 +31,6 @@ export const reducer = (state, { type, payload }) => {
     };
     //if no deal return
     if (!state.deal) return items;
-    console.log("HAVE A DEAL");
 
     //clear all properties containing previous discounts for all cartItems
     items.forEach((item) => {
@@ -38,24 +38,21 @@ export const reducer = (state, { type, payload }) => {
       item.itemDiscount = undefined;
     });
 
-    //if deal is a category deal, find one item in catgory and set discount
+    //if deal is a category deal, find highest priced item in cart and set discount
     if (state.deal.category) {
       let applicableItems = items.filter(
         (el) => el.category === state.deal.category
       );
-      // console.log(applicableItems);
+      if (!applicableItems) return items;
       applicableItems.map((item) => {
-        //clear discount on all items
-        item.categoryDiscount = undefined;
-        //find highest price of all applicableItems
+        //find highest price out of all applicableItems
         if (
-          Number(item.price.replace("$", "")) >
+          Number(item.price.replace("$", "")) >=
           Number(itemToDiscount.price.replace("$", ""))
         ) {
           itemToDiscount = item;
         }
       });
-      if (!itemToDiscount) return items;
       itemToDiscount.categoryDiscount = state.deal.discountPercent;
       updatedCart = [...items];
       updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
@@ -73,6 +70,7 @@ export const reducer = (state, { type, payload }) => {
     }
   };
 
+  //REDUCER
   switch (type) {
     default:
       return { ...state };
@@ -94,8 +92,8 @@ export const reducer = (state, { type, payload }) => {
         //create new object to add quantity
         let newItem = { ...payload.item, quantity: payload.quantity };
         updatedCart = [...state.cartItems, newItem];
-        if (state.deal){
-          applyDeal(updatedCart)
+        if (state.deal) {
+          applyDeal(updatedCart);
         }
 
         return {
@@ -112,8 +110,8 @@ export const reducer = (state, { type, payload }) => {
         //save cartItems with updated item
         updatedCart = [...existingCart];
         updatedCart[state.cartItems.indexOf(existingItem)] = updatedItem;
-        if (state.deal){
-          applyDeal(updatedCart)
+        if (state.deal) {
+          applyDeal(updatedCart);
         }
 
         return {
@@ -158,8 +156,8 @@ export const reducer = (state, { type, payload }) => {
       if (existingItem.quantity === 1) {
         updatedCart = existingCart.filter((item) => item.id != payload);
 
-        if (state.deal){
-          applyDeal(updatedCart)
+        if (state.deal) {
+          applyDeal(updatedCart);
         }
 
         return {
@@ -182,8 +180,8 @@ export const reducer = (state, { type, payload }) => {
     case "CLEAR_CART_ITEM":
       existingCart = [...state.cartItems];
       updatedCart = existingCart.filter((item) => item.id != payload);
-      if (state.deal){
-        applyDeal(updatedCart)
+      if (state.deal) {
+        applyDeal(updatedCart);
       }
 
       return {

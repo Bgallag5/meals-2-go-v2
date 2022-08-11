@@ -2,9 +2,6 @@ import emailjs from "@emailjs/browser";
 
 //
 export const sendOrderConfirm = (formValues, cartItems, totalAmount, emailPublicKey) => {
-    console.log(cartItems);
-    console.log(emailPublicKey);
-  const EMAIL_PUBLIC_KEY = process.env.REACT_APP_EMAIL_PUBLIC_KEY;
   const { firstName, cardCSV, email } = formValues;
 
   const message = createEmailMarkup(formValues, cartItems, totalAmount);
