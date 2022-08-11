@@ -8,8 +8,6 @@ export default function CartModal() {
   const modalRef = useRef();
   const router = useRouter();
 
-  console.log(totalAmount);
-
   const handleCheckoutClick = () => {
     toggleCartModal(false)
     router.push('/checkout')

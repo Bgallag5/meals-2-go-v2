@@ -3,7 +3,7 @@ import Image from "next/image";
 import { GlobalContext } from "../../store/GlobalStore";
 
 export default function CartItem({ item }) {
-  const { cartItems, addToCart, decrementCartItem, deleteCartItem } =
+  const { cartItems, addToCart, decrementCartItem, deleteCartItem, deal } =
     useContext(GlobalContext);
 
   const handleUpdateQuantity = (e) => {
@@ -34,9 +34,23 @@ export default function CartItem({ item }) {
       <div className="flex flex-col gap-1 text-center w-1/3 items-center justify-center">
         <h1 className="">{item.name}</h1>
         <h2>x {item.quantity}</h2>
-        <h2 className="text-orange-600">
-          {Number((item.price.replace("$", "")) * Number(item.quantity)).toFixed(2)}
-        </h2>
+        {deal?.itemId == item.id ? (
+          <h2 data-price={item.price} className=" discount-price">
+            $
+            {Number(
+              item.price.replace("$", "") *
+                Number(item.quantity) *
+                ((100 - deal.discountPercent) / 100)
+            ).toFixed(2)}
+          </h2>
+        ) : (
+          <h2 className="text-orange-600">
+            $
+            {Number(
+              item.price.replace("$", "") * Number(item.quantity)
+            ).toFixed(2)}
+          </h2>
+        )}
       </div>
       <div className="flex flex-col gap-1 items-center w-1/3  justify-center">
         <div className="flex w-auto flex-row justify-between gap-1">

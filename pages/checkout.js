@@ -11,12 +11,13 @@ import {
 import { useForm } from "@mantine/form";
 import OrderSummary from "../components/Checkout/OrderSummary";
 import { GlobalContext } from "../store/GlobalStore";
+import { sendOrderConfirm } from "../utils/emailtransport";
 
-// import { sendOrderConfirm } from "../../../utils/emailtransporter";
+export default function Checkout(props) {
 
-export default function Checkout() {
-
-    const {items, totalAmount} = useContext(GlobalContext)
+  const {emailPublicKey} = props
+  console.log(emailPublicKey);
+    const {cartItems, totalAmount} = useContext(GlobalContext)
     const [formIsValid, setFormIsValid] = useState(false);
 
       //on form change check for validity
@@ -40,9 +41,10 @@ export default function Checkout() {
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     let isValid = form.validate();
+    console.log(isValid);
 
     if (isValid){
-      sendOrderConfirm(form.values, items, totalAmount);
+      sendOrderConfirm(form.values, cartItems, totalAmount, emailPublicKey);
     }
   }
 
@@ -89,6 +91,7 @@ export default function Checkout() {
         <h2 className="text-large mb2">Checkout Info</h2>
         <Box className="form--container">
           <form
+          // onSubmit={(e) => handleFormChange(e)}
             onChangeCapture={(e) => handleFormChange(e)}
             className="form flex-col"
             onSubmit={form.onSubmit((values) => console.log(values))}
@@ -253,4 +256,14 @@ export default function Checkout() {
     </div>
     </div>
   )
+}
+
+export async function getStaticProps(){
+  const emailPublicKey = "pNTXriRO3N0uoRw93";
+
+  return{
+    props: {
+      emailPublicKey
+    }
+  }
 }

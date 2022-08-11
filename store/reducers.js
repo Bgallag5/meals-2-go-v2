@@ -123,5 +123,15 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         cartModalOpen: payload,
       };
+
+      case 'ADD_DEAL':
+
+      return {
+        ...state,
+        deal: {
+          itemId: payload.itemId,
+          discountPercent: payload.discountPercent
+        }
+      }
   }
 };

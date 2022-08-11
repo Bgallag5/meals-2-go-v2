@@ -12,25 +12,24 @@ export default function Deals() {
   const handleSliderBtnClick = (e) => {
     e.preventDefault();
     if (e.target.dataset.direction === "right") {
-      setSliderIndex((prev) => prev - 1);
+      setSliderIndex(sliderIndex - 1);
     } else if (e.target.dataset.direction === "left") {
       setSliderIndex((prev) => prev + 1);
     }
   };
 
+  
   //timer + useEffect - disable buttons for 750ms after click
-  const timer = setTimeout(() => {
-      return setBtnsDisabled(false)
-  }, 750);
+  useEffect(() => {
+      setBtnsDisabled(true);
+      setTimeout(() => {
+        return setBtnsDisabled(false);
+      }, 750);
+
+    // clearTimeout(timer);
+  }, [sliderIndex]);
 
   useEffect(() => {
-    setBtnsDisabled(true)
-
-    clearTimeout(timer)
-  }, [sliderIndex])
-
-  useEffect(() => {
-    
     //when sliderIndex changes - translateX the slider
     sliderRef.current.style.transform = `translateX(calc(${
       sliderIndex * 100
@@ -45,7 +44,6 @@ export default function Deals() {
     sliderBtnRight.current.onclick = (e) => handleSliderBtnClick(e);
   }, [sliderIndex]);
 
-
   //intersection observer
   useEffect(() => {
     let slides = sliderRef.current.childNodes;
@@ -53,32 +51,33 @@ export default function Deals() {
     //observer callback - if last slider element isIntersecting, btnRight returns to first index
     const handleObserve = (entries, observer) => {
       entries.forEach((entry) => {
-        console.log(entry);
+        if (!entry.isIntersecting) return;
         //if entry is not the last slide - return
         if (
           entry.target !==
           sliderRef.current.childNodes[sliderRef.current.childNodes.length - 1]
         ) {
-        return
+          return;
         }
 
         //if the last slide is intersecting, disable right nav
         if (entry?.isIntersecting) {
-          console.log(sliderBtnRight.current);
-        sliderBtnRight.current.onclick = () => setSliderIndex(0);
+          sliderBtnRight.current.onclick = () => setSliderIndex(0);
         }
+        //unobserve entry
+        observer.unobserve(entry.target);
       });
     };
 
     //declare intersection observer
-    const observer = new IntersectionObserver(handleObserve, {
+    const Observer = new IntersectionObserver(handleObserve, {
       rootMargin: "0px",
       threshold: 0.5,
     });
 
     //observe each slide
     slides.forEach((slide) => {
-      observer.observe(slide);
+      Observer.observe(slide);
     });
   }, []);
 
@@ -87,25 +86,25 @@ export default function Deals() {
       <h1>This Week's Deals!</h1>
       <div className="w-full flex flex-row gap-2 items-center justify-center">
         <span
-        onClick={() => setSliderIndex(0)}
+          onClick={() => setSliderIndex(0)}
           className={`${
             sliderIndex === 0 ? "slider-dot--active" : ""
           } slider-dot`}
         ></span>
         <span
-        onClick={() => setSliderIndex(-1)}
+          onClick={() => setSliderIndex(-1)}
           className={`${
             sliderIndex === -1 ? "slider-dot--active" : ""
           } slider-dot`}
         ></span>
         <span
-        onClick={() => setSliderIndex(-2)}
+          onClick={() => setSliderIndex(-2)}
           className={`${
             sliderIndex === -2 ? "slider-dot--active" : ""
           } slider-dot`}
         ></span>
         <span
-        onClick={() => setSliderIndex(-3)}
+          onClick={() => setSliderIndex(-3)}
           className={`${
             sliderIndex === -3 ? "slider-dot--active" : ""
           } slider-dot`}
@@ -113,8 +112,8 @@ export default function Deals() {
       </div>
       <div className="container">
         <div ref={sliderRef} className="slider">
-          <SliderItem name={"Deal 1"} />
-          <SliderItem name={"Deal 2"} />
+          <SliderItem name={"Deal 1"} discount={50} itemId={5} />
+          <SliderItem name={"Deal 2"} discount={25} itemId={2} />
           <SliderItem name={"Deal 3"} />
           <SliderItem name={"Deal 4"} />
           <SliderItem name={"Deal 5"} />
@@ -141,7 +140,7 @@ export default function Deals() {
         <button
           ref={sliderBtnRight}
           disabled={btsnDisabled}
-        //   onClick={(e) => handleSliderBtnClick(e)}
+          //   onClick={(e) => handleSliderBtnClick(e)}
           data-direction={"right"}
           className="slider-btn absolute right-0 top-[50%] translate-y-[-50%]"
         >

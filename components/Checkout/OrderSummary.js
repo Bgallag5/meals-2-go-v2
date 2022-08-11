@@ -5,7 +5,7 @@ import CartItem from '../Cart/CartItem';
 
 export default function OrderSummary() {
 
-    const {totalAmount, cartItems} = useContext(GlobalContext);
+    const {totalAmount, cartItems, deal} = useContext(GlobalContext);
 
 
 

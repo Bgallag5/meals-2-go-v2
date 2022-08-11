@@ -23,6 +23,21 @@
     visibility: visible;
 }
 
+.discount-price{
+    display: flex;
+    flex-direction: row;
+    gap: .4rem;
+    color: rgb(23, 169, 3);
+}
+
+.discount-price::after{
+    content: attr(data-price);
+    text-decoration: line-through;
+    opacity: 60%;
+    color: rgb(234 88 12 );
+
+}
+
 @keyframes cartSlideIn {
     0%{
         visibility: visible;

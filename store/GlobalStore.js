@@ -9,6 +9,10 @@ const preLoadedState = {
   cartItems: [],
   totalAmount: "",
   menuItems: menu,
+  deal: {
+    discountPercent: undefined,
+    itemId: undefined,
+  },
   cartModalOpen: false,
   searchResults: [],
   appMessage: {
@@ -49,6 +53,10 @@ const Provider = (props) => {
     const deleteCartItem = (id) => {
         dispatch({type: 'CLEAR_CART_ITEM', payload: id})
     }
+    const setDeal = (deal) => {
+      dispatch({type: 'ADD_DEAL', payload: deal});
+      dispatch({type: 'SET_APP_MESSAGE', payload: {msg: 'Deal Claimed', timer: 2, emoji: "👍"}})
+    }
     
 
     //define app context values - state and global functions
@@ -60,6 +68,7 @@ const Provider = (props) => {
       menuItems: state.menuItems,
       appMessage: state.appMessage,
       user: state.user,
+      deal: state.deal,
       //store dispatch functions
       addToCart,
       setAppMessage,
@@ -67,6 +76,7 @@ const Provider = (props) => {
       decrementCartItem,
       toggleCartModal,
       deleteCartItem,
+      setDeal
       //helper functions
     };
 
