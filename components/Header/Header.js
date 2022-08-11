@@ -202,13 +202,13 @@ export default function Header() {
       </div>
       <div>
         <button
-        disabled={cartItems.length < 1}
+        disabled={cartItems?.length < 1}
           onClick={() => handleToggleCartModal()}
           className={`btn justify-center md:w-auto md:h-auto lg:px-6 md:py-2 relative`}
         >
           <div
             className={`${
-              cartItems.length > 0 ? "visible" : "invisible"
+              cartItems?.length > 0 ? "visible" : "invisible"
             } absolute top-0 right-0 flex items-center justify-center bg-secondary h-8 w-8 rounded-full translate-x-[35%] -translate-y-[20%] text-black`}
           >
             {cartItems && cartItems.length}

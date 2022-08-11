@@ -112,9 +112,9 @@ export default function Deals() {
       </div>
       <div className="container">
         <div ref={sliderRef} className="slider">
-          <SliderItem name={"Deal 1"} discount={50} itemId={5} />
-          <SliderItem name={"Deal 2"} discount={25} itemId={2} />
-          <SliderItem name={"Deal 3"} />
+          <SliderItem name={"50% off Feta and Arugala Pizza"} discount={50} itemId={5} discountType={"item"}  />
+          <SliderItem name={"10% off Entire Order"} discount={25} itemId={null} discountType={"order"} />
+          <SliderItem name={"25% off any Burger"} discount={25} category={'sandwich'} itemId={null} discountType={"item"} />
           <SliderItem name={"Deal 4"} />
           <SliderItem name={"Deal 5"} />
           <SliderItem name={"Deal 6"} />

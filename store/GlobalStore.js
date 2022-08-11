@@ -10,8 +10,10 @@ const preLoadedState = {
   totalAmount: "",
   menuItems: menu,
   deal: {
-    discountPercent: undefined,
     itemId: undefined,
+    discountPercent: undefined,
+    discountType: undefined,
+    category: undefined,
   },
   cartModalOpen: false,
   searchResults: [],

@@ -6,12 +6,71 @@ export const reducer = (state, { type, payload }) => {
 
   const calcCartTotal = (items) => {
     let total = items.reduce((acc, cur) => {
-      let itemTotal = Number(cur.price.replace("$", "")) * Number(cur.quantity);
-      return acc + itemTotal;
+      let discount = cur.categoryDiscount || cur.itemDiscount;
+      if (!discount) {
+        let itemTotal =
+          Number(cur.price.replace("$", "")) * Number(cur.quantity);
+        return acc + itemTotal;
+      } else if (discount) {
+        let itemTotal = Number(
+          cur.price.replace("$", "") * Number(cur.quantity - 1) +
+            cur.price.replace("$", "") * ((100 - discount) / 100)
+        );
+        return acc + itemTotal;
+      }
     }, 0);
-    console.log('TOTAL');
+    console.log("TOTAL");
     console.log(total);
     return Number(total.toFixed(2));
+  };
+
+  const applyDeal = (items) => {
+    let itemToDiscount = {
+      price: "$0",
+    };
+    //if no deal return
+    if (!state.deal) return items;
+    console.log("HAVE A DEAL");
+
+    //clear all properties containing previous discounts for all cartItems
+    items.forEach((item) => {
+      item.categoryDiscount = undefined;
+      item.itemDiscount = undefined;
+    });
+
+    //if deal is a category deal, find one item in catgory and set discount
+    if (state.deal.category) {
+      let applicableItems = items.filter(
+        (el) => el.category === state.deal.category
+      );
+      // console.log(applicableItems);
+      applicableItems.map((item) => {
+        //clear discount on all items
+        item.categoryDiscount = undefined;
+        //find highest price of all applicableItems
+        if (
+          Number(item.price.replace("$", "")) >
+          Number(itemToDiscount.price.replace("$", ""))
+        ) {
+          itemToDiscount = item;
+        }
+      });
+      if (!itemToDiscount) return items;
+      itemToDiscount.categoryDiscount = state.deal.discountPercent;
+      updatedCart = [...items];
+      updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
+      return updatedCart;
+    }
+    //if deal is an item deal, set itemDiscount on the item
+    else if (state.deal.itemId) {
+      let applicableItem = items.find((item) => item.id == state.deal.itemId);
+      if (!applicableItem) return items;
+      applicableItem.itemDiscount = state.deal.discountPercent;
+
+      updatedCart = [...items];
+      updatedCart[items.indexOf(applicableItem)] = applicableItem;
+      return updatedCart;
+    }
   };
 
   switch (type) {
@@ -35,6 +94,10 @@ export const reducer = (state, { type, payload }) => {
         //create new object to add quantity
         let newItem = { ...payload.item, quantity: payload.quantity };
         updatedCart = [...state.cartItems, newItem];
+        if (state.deal){
+          applyDeal(updatedCart)
+        }
+
         return {
           ...state,
           cartItems: updatedCart,
@@ -49,6 +112,10 @@ export const reducer = (state, { type, payload }) => {
         //save cartItems with updated item
         updatedCart = [...existingCart];
         updatedCart[state.cartItems.indexOf(existingItem)] = updatedItem;
+        if (state.deal){
+          applyDeal(updatedCart)
+        }
+
         return {
           ...state,
           cartItems: updatedCart,
@@ -91,6 +158,10 @@ export const reducer = (state, { type, payload }) => {
       if (existingItem.quantity === 1) {
         updatedCart = existingCart.filter((item) => item.id != payload);
 
+        if (state.deal){
+          applyDeal(updatedCart)
+        }
+
         return {
           ...state,
           cartItems: updatedCart,
@@ -104,13 +175,16 @@ export const reducer = (state, { type, payload }) => {
 
       return {
         ...state,
-        cartItems: updatedCart,
+        cartItems: applyDeal(updatedCart),
         totalAmount: calcCartTotal(updatedCart),
       };
 
     case "CLEAR_CART_ITEM":
       existingCart = [...state.cartItems];
       updatedCart = existingCart.filter((item) => item.id != payload);
+      if (state.deal){
+        applyDeal(updatedCart)
+      }
 
       return {
         ...state,
@@ -124,14 +198,15 @@ export const reducer = (state, { type, payload }) => {
         cartModalOpen: payload,
       };
 
-      case 'ADD_DEAL':
-
+    case "ADD_DEAL":
       return {
         ...state,
         deal: {
           itemId: payload.itemId,
-          discountPercent: payload.discountPercent
-        }
-      }
+          discountPercent: payload.discountPercent,
+          discountType: payload.discountType,
+          category: payload.category,
+        },
+      };
   }
 };

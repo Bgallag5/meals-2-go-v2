@@ -34,15 +34,34 @@ export default function CartItem({ item }) {
       <div className="flex flex-col gap-1 text-center w-1/3 items-center justify-center">
         <h1 className="">{item.name}</h1>
         <h2>x {item.quantity}</h2>
-        {deal?.itemId == item.id ? (
-          <h2 data-price={item.price} className=" discount-price">
+        {/* if our deal was a single item deal: */}
+        {item.itemDiscount ? (
+          <h2
+            data-price={Number(item.price.replace("$", "") * item.quantity)}
+            className=" discount-price"
+          >
             $
             {Number(
-              item.price.replace("$", "") *
-                Number(item.quantity) *
-                ((100 - deal.discountPercent) / 100)
+              item.price.replace("$", "") * Number(item.quantity - 1) +
+                item.price.replace("$", "") *
+                  ((100 - item.itemDiscount) / 100)
             ).toFixed(2)}
           </h2>
+        ) : item.categoryDiscount ? (
+          <>
+          {/* if our deal was a category deal - (item.categoryDeal added in reducer): */}
+          <h2
+            data-price={Number(item.price.replace("$", "") * item.quantity)}
+            className=" discount-price"
+          >
+            $
+            {Number(
+              item.price.replace("$", "") * Number(item.quantity - 1) +
+                item.price.replace("$", "") *
+                  ((100 - item.categoryDiscount) / 100)
+            ).toFixed(2)}
+          </h2>
+          </>
         ) : (
           <h2 className="text-orange-600">
             $

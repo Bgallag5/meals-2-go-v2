@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 import { useRouter } from "next/router";
 
 export default function CartModal() {
-  const { cartItems, totalAmount, toggleCartModal, cartModalOpen } = useContext(GlobalContext);
+  const { cartItems, totalAmount, toggleCartModal, cartModalOpen, deal } = useContext(GlobalContext);
   const modalRef = useRef();
   const router = useRouter();
 
