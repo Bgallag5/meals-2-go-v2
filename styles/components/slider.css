@@ -1,9 +1,6 @@
 :root {
   --slider-padding: 5rem;
   --slider-gap: 0.5rem;
-
-  --color-primary: rgb(0 178 137);
-  --color-secondary: rgb(248 219 98 );
 }
 
 .container {
@@ -150,7 +147,7 @@
 }
 
 .slider-dot {
-  height: 0.3rem;
+  height: 1rem;
   width: 1rem;
   background-color: white;
   border-radius: 50rem;
@@ -161,5 +158,5 @@
 }
 
 .slider-dot--active {
-  background-color: green;
+  background-color: var(--color-secondary);
 }

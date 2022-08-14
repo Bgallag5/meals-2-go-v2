@@ -89,7 +89,11 @@
   margin-left: 100%;
 }
 
-
+/* Chrome no scrollbar */
 #search-results::-webkit-scrollbar{
   display: none;
+}
+/* Firefox no scrollbar */
+#search-results{
+  scrollbar-width: none;
 }

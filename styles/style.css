@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&family=Saira:ital,wght@0,200;0,300;0,400;1,500;1,600;1,200&display=swap');
 
+:root {
+  --color-primary: rgb(0 178 137);
+  --color-secondary: rgb(248 219 98 );
+}
+
 /* base */
 @import './base/utils.css';
 @import './base/typography.css';
