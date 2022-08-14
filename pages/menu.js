@@ -3,9 +3,10 @@ import { GlobalContext } from "../store/GlobalStore";
 
 import MenuItem from "../components/MainMenu/MenuItem";
 import MenuModal from "../components/MenuModal/MenuModal";
+import Filter from "../components/MenuFilter/Filter";
 
 export default function MainMenu() {
-  const { menuItems, addToCart } = useContext(GlobalContext);
+  const { menuItems, addToCart, menuFilter, setMenuFilter } = useContext(GlobalContext);
 
   const [modalState, setModalState] = useState(undefined);
 
@@ -20,11 +21,40 @@ export default function MainMenu() {
     }
   });
 
+  //watch filter and style menu if filter
+  useEffect(() => {
+    let items = document.querySelectorAll('.menu-item');
+    items.forEach(item => item.classList.remove('menu-item--active'))
+    if (!menuFilter) return;
+
+    items.forEach(item => {
+      console.log(item.dataset.category);
+      console.log(menuFilter);
+      //if menuItem.category equals filter, add "active" classname
+      if (item.dataset.category === menuFilter){
+        item.classList.add("menu-item--active")
+      }
+    });
+  }, [menuFilter]);
+
+
+  //scroll to first filtered element
+  useEffect(() => {
+    if (!menuFilter) return;
+
+    let items = document.querySelectorAll('.menu-item--active');
+    if (!items) return;
+
+    items[0].scrollIntoView({behavior: "smooth"});
+
+  }, [menuFilter])
+
   return (
     <>
       <div className="flex flex-col bg-primary/80 rounded z-20">
         <h1 className="text-2xl text-center my-10">Main Menu</h1>
         <div className=" menu__section">
+          <Filter menuFilter={menuFilter} setMenuFilter={setMenuFilter} />
           <h1 className="menu__section-title">Starters</h1>
           <div className="menu__section-items">
             {menuItems &&

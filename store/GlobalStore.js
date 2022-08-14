@@ -9,6 +9,7 @@ const preLoadedState = {
   cartItems: [],
   totalAmount: "",
   menuItems: menu,
+  menuFilter: undefined,
   deal: {
     itemId: undefined,
     discountPercent: undefined,
@@ -59,6 +60,9 @@ const Provider = (props) => {
       dispatch({type: 'ADD_DEAL', payload: deal});
       dispatch({type: 'SET_APP_MESSAGE', payload: {msg: 'Deal Claimed', timer: 2, emoji: "👍"}})
     }
+    const setMenuFilter = (filter) => {
+      dispatch({type: 'SET_MENU_FILTER', payload: filter})
+    }
     
 
     //define app context values - state and global functions
@@ -71,6 +75,7 @@ const Provider = (props) => {
       appMessage: state.appMessage,
       user: state.user,
       deal: state.deal,
+      menuFilter: state.menuFilter,
       //store dispatch functions
       addToCart,
       setAppMessage,
@@ -78,7 +83,8 @@ const Provider = (props) => {
       decrementCartItem,
       toggleCartModal,
       deleteCartItem,
-      setDeal
+      setDeal,
+      setMenuFilter,
       //helper functions
     };
 

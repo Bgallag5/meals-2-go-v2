@@ -6,7 +6,7 @@ export default function MenuItem(props) {
   const { addToCart, cartItems, setAppMessage } = useContext(GlobalContext);
   const quantityRef = useRef();
 
-  const { name, price, description, image, id, emoji } = props.item;
+  const { name, price, description, image, id, emoji, category } = props.item;
   const showItemModal = props.showItemModal;
 
   const handleAddToCart = () => {
@@ -18,7 +18,7 @@ export default function MenuItem(props) {
   };
 
   return (
-    <div className="relative flex flex-row gap-6 h-32 bg-white w-full group ">
+    <div data-category={category} className="menu-item relative flex flex-row gap-6 h-32 bg-white w-full group ">
       {/* <div className='absolute top-0 left-[50%] h-32 w-32'>
             <Image src={require(`../../assets/images/${image}`)} layout="fill"/>
         </div> */}

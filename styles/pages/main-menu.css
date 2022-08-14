@@ -14,5 +14,11 @@
     .menu__section-items{
         @apply bg-slate-300 rounded-md overflow-hidden h-auto flex flex-col gap-[1px];
     }
+    /* .menu-item--inactive{
+        @apply bg-orange-200;
+    } */
 }
 
+.menu-item--active{
+background: linear-gradient(to bottom right, rgb(255, 169, 99), rgb(253, 253, 168) 15%, white 50%)   !important;
+}

@@ -206,5 +206,11 @@ export const reducer = (state, { type, payload }) => {
           category: payload.category,
         },
       };
+
+      case "SET_MENU_FILTER": 
+      return {
+        ...state,
+        menuFilter: payload
+      }
   }
 };

@@ -20,7 +20,7 @@
 @import './components/cart.css';
 @import './pages/checkout.css';
 @import './components/slider.css';
-
+@import './components/filter.css';
 
 html,
 body {
