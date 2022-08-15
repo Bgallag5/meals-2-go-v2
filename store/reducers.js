@@ -30,7 +30,8 @@ export const reducer = (state, { type, payload }) => {
       price: "$0",
     };
     //if no deal return
-    if (!state.deal) return items;
+    console.log(!state.deal);
+    if (!state.deal.discountPercent) return items;
 
     //clear all properties containing previous discounts for all cartItems
     items.forEach((item) => {
@@ -92,7 +93,7 @@ export const reducer = (state, { type, payload }) => {
         //create new object to add quantity
         let newItem = { ...payload.item, quantity: payload.quantity };
         updatedCart = [...state.cartItems, newItem];
-        if (state.deal) {
+        if (state.deal.discountPercent) {
           applyDeal(updatedCart);
         }
 
@@ -110,7 +111,7 @@ export const reducer = (state, { type, payload }) => {
         //save cartItems with updated item
         updatedCart = [...existingCart];
         updatedCart[state.cartItems.indexOf(existingItem)] = updatedItem;
-        if (state.deal) {
+        if (state.deal.discountPercent) {
           applyDeal(updatedCart);
         }
 
@@ -156,7 +157,7 @@ export const reducer = (state, { type, payload }) => {
       if (existingItem.quantity === 1) {
         updatedCart = existingCart.filter((item) => item.id != payload);
 
-        if (state.deal) {
+        if (state.deal.discountPercent) {
           applyDeal(updatedCart);
         }
 
@@ -171,16 +172,20 @@ export const reducer = (state, { type, payload }) => {
       updatedCart = [...existingCart];
       updatedCart[state.cartItems.indexOf(existingItem)] = updatedItem;
 
+      if (state.deal.discountPercent) {
+        applyDeal(updatedCart);
+      }
+
       return {
         ...state,
-        cartItems: applyDeal(updatedCart),
+        cartItems: updatedCart,
         totalAmount: calcCartTotal(updatedCart),
       };
 
     case "CLEAR_CART_ITEM":
       existingCart = [...state.cartItems];
       updatedCart = existingCart.filter((item) => item.id != payload);
-      if (state.deal) {
+      if (state.deal.discountPercent) {
         applyDeal(updatedCart);
       }
 

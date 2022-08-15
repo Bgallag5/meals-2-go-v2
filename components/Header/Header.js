@@ -8,12 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { GlobalContext } from "../../store/GlobalStore";
 import Image from "next/image";
-
+import SearchResults from "../SearchResults/SearchResults";
 import MenuModal from "../MenuModal/MenuModal";
 
 export default function Header() {
-  const { cartItems, cartModalOpen, toggleCartModal, menuItems } =
-    useContext(GlobalContext);
+  const { cartItems, cartModalOpen, toggleCartModal, menuItems } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [debounceSearchTerm, setDebounceSearchTerm] = useState("");
   const [searchResults, setSearchResutls] = useState("");
@@ -162,38 +161,12 @@ export default function Header() {
               onClick={(e) => e.stopPropagation()}
               ref={searchResultsRef}
               id={"search-results"}
-              className="absolute top-[50%] bg-slate-300  z-10  max-h-[60vh] h-auto overflow-hidden overflow-y-scroll pb-4   border-[1px] border-black  w-full rounded-b-2xl"
+              className="absolute top-[50%] bg-white   z-10  max-h-[60vh] h-auto overflow-hidden overflow-y-scroll pb-4   border-[1px] border-black  w-full rounded-b-2xl"
             >
               <div className="h-10 w-full flex justify-center relative "></div>
               {searchResults.map((item) => {
                 return (
-                  <div
-                    disabled={true}
-                    onClick={() => handleSearchClick(item)}
-                    className="cursor-pointer relative hover:scale-[103%] group z-20 flex p-2 flex-col h-auto w-full rounded-b-lg"
-                  >
-                    <div className="absolute bottom-0 left-[50%] group-hover:visible invisible -translate-x-[50%] w-[90%] h-full border-b-[1px] border-black/50"></div>
-                    <div className="h-16 w-full flex flex-row justify-between m-0 p-0 relative text-sm">
-                      <div className="flex flex-row flex-1  gap-1">
-                        <p className="flex flex-1 justify-center">
-                          {" "}
-                          {item.name}
-                        </p>
-                        <p className="w-20 text-center">
-                          {item.price && item.price}
-                        </p>
-                      </div>
-                      <div className="relative h-full rounded-md overflow-hidden w-20 ">
-                        {item.image && (
-                          <Image
-                            className="object-cover rouned-md"
-                            layout={"fill"}
-                            src={require(`../../assets/images/${item.image}`)}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <SearchResults item={item} handleSearchClick={handleSearchClick} />
                 );
               })}
             </div>

@@ -30,11 +30,11 @@ export default function MenuModal(props) {
       id="menu-modal"
       ref={modalRef}
       onClick={closeModal}
-      className="bg-white/40 z-40  fixed top-0 left-0 h-screen w-screen flex justify-center items-center"
+      className="bg-white/50 z-40  fixed top-0 left-0 h-screen w-screen flex justify-center items-center"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="fixed p-4 pt-10 flex flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-80 h-[auto] w-[30rem] py-8 px-2 bg-slate-300"
+        className="fixed p-4 pt-10 flex flex-col top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-80 h-[auto] w-[30rem] py-8 px-2 bg-slate-100 border border-black rounded-md shadow-lg shadow-black/30"
       >
         <span
           onClick={closeModal}
@@ -43,10 +43,10 @@ export default function MenuModal(props) {
           X
         </span>
         <div className="flex flex-row h-40 w-full border-b-[1px] border-black/50 pb-2 mb-2">
-          <h1 className="w-1/2 flex items-center justify-center text-center text-3xl font-light">
+          <h1 className="w-1/2 flex items-center justify-center text-center text-3xl p-2 font-light">
             {name}
           </h1>
-          <div className="h-full w-1/2 relative shadow-md shadow-black/30">
+          <div className="h-full w-1/2 relative rounded-md overflow-hidden shadow-md shadow-black/30">
             <Image
               className="object-cover"
               src={require(`../../assets/images/${image}`)}

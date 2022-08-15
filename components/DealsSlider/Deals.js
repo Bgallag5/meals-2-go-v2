@@ -112,22 +112,22 @@ export default function Deals() {
       </div>
       <div className="container">
         <div ref={sliderRef} className="slider">
-          <SliderItem name={"Feta and Arugala Pizza"} discountStr={"50% off"} subtext={'with purchase of a Large Soda (coming soon)'} discount={50} itemId={5} discountType={"item"}  />
-          <SliderItem name={" Entire Order"} discountStr={"10% off"} discount={25} itemId={null} discountType={"order"} />
-          <SliderItem name={"Any Burger"} discountStr={"25% off "} subtext={'Not valid in Hawaii'} discount={25} category={'sandwich'} itemId={null} discountType={"item"} />
-          <SliderItem name={"Deal 4"} />
-          <SliderItem name={"Deal 5"} />
-          <SliderItem name={"Deal 6"} />
-          <SliderItem name={"Deal 7"} />
-          <SliderItem name={"Deal 8"} />
-          <SliderItem name={"Deal 9"} />
-          <SliderItem name={"Deal 10"} />
-          <SliderItem name={"Deal 11"} />
-          <SliderItem name={"Deal 12"} />
-          <SliderItem name={"Deal 13"} />
-          <SliderItem name={"Deal 14"} />
-          <SliderItem name={"Deal 15"} />
-          <SliderItem name={"Deal 16"} />
+          <SliderItem title={"Feta and Arugala Pizza"} discountStr={"50% off"} subtext={'with purchase of a Large Soda (coming soon)'} discount={50} itemId={5} discountType={"item"}  />
+          <SliderItem title={" Entire Order"} discountStr={"10% off"} discount={10} itemId={null} discountType={"order"} />
+          <SliderItem title={"Any Burger"} discountStr={"25% off "} subtext={'Not valid in Hawaii'} discount={25} category={'sandwich'} itemId={null} discountType={"item"} />
+          <SliderItem title={"Deal 4"} />
+          <SliderItem title={"Deal 5"} />
+          <SliderItem title={"Deal 6"} />
+          <SliderItem title={"Deal 7"} />
+          <SliderItem title={"Deal 8"} />
+          <SliderItem title={"Deal 9"} />
+          <SliderItem title={"Deal 10"} />
+          <SliderItem title={"Deal 11"} />
+          <SliderItem title={"Deal 12"} />
+          <SliderItem title={"Deal 13"} />
+          <SliderItem title={"Deal 14"} />
+          <SliderItem title={"Deal 15"} />
+          <SliderItem title={"Deal 16"} />
         </div>
         <button
           ref={sliderBtnLeft}

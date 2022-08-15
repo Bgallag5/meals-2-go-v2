@@ -1,10 +1,10 @@
 import emailjs from "@emailjs/browser";
 
 //
-export const sendOrderConfirm = (formValues, cartItems, totalAmount, emailPublicKey) => {
+export const sendOrderConfirm = (formValues, cartItems, finalAmount, emailPublicKey) => {
   const { firstName, cardCSV, email } = formValues;
 
-  const message = createEmailMarkup(formValues, cartItems, totalAmount);
+  const message = createEmailMarkup(formValues, cartItems, finalAmount);
   const emailData = {
       from_name: "Meals 2 Go",
       from_email: "noreply@meals2go.com",
@@ -25,7 +25,7 @@ export const sendOrderConfirm = (formValues, cartItems, totalAmount, emailPublic
 };
 
 //build order summary section in email
-const orderSummary = (formValues, cartItems, totalAmount) => {
+const orderSummary = (formValues, cartItems, finalAmount) => {
     return (
         `<div>
         <div>
@@ -34,7 +34,7 @@ const orderSummary = (formValues, cartItems, totalAmount) => {
         })}
         </div>
         
-      <h2>Order Total: $${totalAmount} <h2> 
+      <h2>Order Total: $${finalAmount} <h2> 
       <h4>Delivery to: ${formValues.streetAddress}, ${formValues.state} ${formValues.zipcode} </h4>
       </div>
 
@@ -43,9 +43,9 @@ const orderSummary = (formValues, cartItems, totalAmount) => {
 }
 
 //build email markup
-const createEmailMarkup = (formValues, cartItems, totalAmount) => {
+const createEmailMarkup = (formValues, cartItems, finalAmount) => {
   const { firstName, cardCSV, cardNumber } = formValues;
-  const summary = orderSummary(formValues, cartItems, totalAmount);
+  const summary = orderSummary(formValues, cartItems, finalAmount);
   return (
       `
     <div>

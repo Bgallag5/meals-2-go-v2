@@ -249,3 +249,42 @@ export const menu = [
   emoji: `🍪`,
 },
 ];
+
+export const deals = [
+  {
+    title: "Feta and Arugala Pizza",
+    discountStr: "50% off",
+    subtext: "with purchase of large soda",
+    discount: 50,
+    itemId: 5,
+    discountType: "item",
+    category: null
+  },
+  {
+    title: "Entire Order",
+    discountStr: "10% off",
+    subtext: "",
+    discount: 10,
+    itemId: null,
+    discountType: "order",
+    category: null
+  },
+  {
+    title: "Any Burger",
+    discountStr: "25% off",
+    subtext: "not valid in Hawaii",
+    discount: 25,
+    itemId: null,
+    discountType: "item",
+    category: "sandwich"
+  },
+  {
+    title: "Any salad",
+    discountStr: "50% off",
+    subtext: "",
+    discount: 100,
+    itemId: null,
+    discountType: "item",
+    category: "salad"
+  },
+]
