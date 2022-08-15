@@ -1,0 +1,103 @@
+:root {
+  --spinner-primary: var(--color-primary);
+  --spinner-secondary: var(--color-secondary);
+
+  --spinner-background: black;
+  --spinner-tail-1: yellow;
+}
+
+.loader {
+  position: relative;
+  height: 10rem;
+  width: 10rem;
+  box-sizing: border-box;
+  align-self: center;
+  justify-self: center;
+  margin: 0 auto;
+}
+
+.face {
+  position: absolute;
+  border: 1px solid white;
+}
+
+.face-1 {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--spinner-secondary);
+  border: 2px solid white;
+  border-left: 2px solid var(--color-primary);
+  border-top: 2px solid var(--color-primary);
+  animation: circle 1.5s linear infinite;
+}
+
+.face-1 > .circle::before {
+  background: var(--spinner-primary);
+  /* box-shadow: 0 0 20px var(--color-primary), 0 0 40px var(--color-primary), 0 0 60px var(--color-primary), 0 0 80px var(--color-primary),
+      0 0 100px var(--color-primary), 0 0 5px var(--color-primary); */
+}
+
+.face-2 {
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  border-radius: 50%;
+  border-right: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  animation: circle2 2s linear infinite;
+}
+
+.circle {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  transform-origin: left;
+    background-color: var(--color-primary);
+}
+
+.circle::before {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  top: -4px;
+  right: -6px;
+  z-index: 9999;
+}
+
+.face-2 > .circle::before {
+  background: var(--color-primary);
+  /* box-shadow: 0 0 20px var(--color-primary), 0 0 40px var(--color-primary), 0 0 60px var(--color-primary), 0 0 80px var(--color-primary),
+      0 0 100px var(--color-primary); */
+}
+
+.face-1 .circle {
+  transform: rotate(-45deg);
+}
+.face-2 .circle {
+  transform: rotate(-52deg);
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes circle2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

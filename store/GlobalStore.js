@@ -15,6 +15,7 @@ const preLoadedState = {
     discountPercent: undefined,
     discountType: undefined,
     category: undefined,
+    course: undefined
   },
   cartModalOpen: false,
   searchResults: [],

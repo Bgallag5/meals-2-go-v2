@@ -18,13 +18,12 @@ export default function Deals() {
     }
   };
 
-  
   //timer + useEffect - disable buttons for 750ms after click
   useEffect(() => {
-      setBtnsDisabled(true);
-      setTimeout(() => {
-        return setBtnsDisabled(false);
-      }, 750);
+    setBtnsDisabled(true);
+    setTimeout(() => {
+      return setBtnsDisabled(false);
+    }, 750);
 
     // clearTimeout(timer);
   }, [sliderIndex]);
@@ -59,16 +58,12 @@ export default function Deals() {
         ) {
           return;
         }
-
-        //if the last slide is intersecting, disable right nav
+        //if the last slide is intersecting, right nav goes back to start
         if (entry?.isIntersecting) {
           sliderBtnRight.current.onclick = () => setSliderIndex(0);
         }
-        //unobserve entry
-        observer.unobserve(entry.target);
       });
     };
-
     //declare intersection observer
     const Observer = new IntersectionObserver(handleObserve, {
       rootMargin: "0px",
@@ -112,10 +107,39 @@ export default function Deals() {
       </div>
       <div className="container">
         <div ref={sliderRef} className="slider">
-          <SliderItem title={"Feta and Arugala Pizza"} discountStr={"50% off"} subtext={'with purchase of a Large Soda (coming soon)'} discount={50} itemId={5} discountType={"item"}  />
-          <SliderItem title={" Entire Order"} discountStr={"10% off"} discount={10} itemId={null} discountType={"order"} />
-          <SliderItem title={"Any Burger"} discountStr={"25% off "} subtext={'Not valid in Hawaii'} discount={25} category={'sandwich'} itemId={null} discountType={"item"} />
-          <SliderItem title={"Deal 4"} />
+          <SliderItem
+            title={"Feta and Arugala Pizza"}
+            discountStr={"50% off"}
+            subtext={"with purchase of a Large Soda (coming soon)"}
+            discount={50}
+            itemId={5}
+            discountType={"item"}
+          />
+          <SliderItem
+            title={" Entire Order"}
+            discountStr={"10% off"}
+            discount={10}
+            itemId={null}
+            discountType={"order"}
+          />
+          <SliderItem
+            title={"Any Burger"}
+            discountStr={"25% off "}
+            subtext={"Not valid in Hawaii"}
+            discount={25}
+            category={"sandwich"}
+            itemId={null}
+            discountType={"item"}
+          />
+          <SliderItem
+            title={"Free Appetizer"}
+            discountStr={""}
+            subtext={"Any starter on the house"}
+            discount={100}
+            course={"starter"}
+            itemId={null}
+            discountType={"item"}
+          />
           <SliderItem title={"Deal 5"} />
           <SliderItem title={"Deal 6"} />
           <SliderItem title={"Deal 7"} />

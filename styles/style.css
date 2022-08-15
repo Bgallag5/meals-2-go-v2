@@ -26,6 +26,8 @@
 @import './pages/checkout.css';
 @import './components/slider.css';
 @import './components/filter.css';
+@import './pages/orderplaced.css';
+@import './components/spinner.css';
 
 html,
 body {

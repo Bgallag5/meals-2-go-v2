@@ -29,8 +29,8 @@ export const reducer = (state, { type, payload }) => {
     let itemToDiscount = {
       price: "$0",
     };
+    let applicableItems;
     //if no deal return
-    console.log(!state.deal);
     if (!state.deal.discountPercent) return items;
 
     //clear all properties containing previous discounts for all cartItems
@@ -39,36 +39,69 @@ export const reducer = (state, { type, payload }) => {
       item.itemDiscount = undefined;
     });
 
-    //if deal is a category deal, find highest priced item in cart and set discount
+    //if deal is a category or course deal, find highest priced item in cart and set discount
+    if (state.deal.category || state.deal.course){
+      console.log("COURSE:CATEGORY");
+
     if (state.deal.category) {
-      let applicableItems = items.filter(
+      applicableItems = items.filter(
         (el) => el.category === state.deal.category
       );
-      if (!applicableItems) return items;
-      applicableItems.map((item) => {
-        //find highest price out of all applicableItems
-        if (
-          Number(item.price.replace("$", "")) >=
-          Number(itemToDiscount.price.replace("$", ""))
-        ) {
-          itemToDiscount = item;
-        }
-      });
-      itemToDiscount.categoryDiscount = state.deal.discountPercent;
-      updatedCart = [...items];
-      updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
-      return updatedCart;
+    } else if (state.deal.course) {
+      applicableItems = items.filter((el) => el.course === state.deal.course);
     }
+
+    if (!applicableItems) return items;
+    console.log(applicableItems);
+
+    applicableItems.map((item) => {
+      //find highest price out of all applicableItems
+      if (Number(item.price.replace("$", "")) >= Number(itemToDiscount.price.replace("$", ""))) {
+        itemToDiscount = item;
+      }
+    });
+    //set either course or category discount as "categoryDiscount" 
+    itemToDiscount.categoryDiscount = state.deal.discountPercent;
+    updatedCart = [...items];
+    updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
+    return updatedCart;
+  }
+
+
+    //if deal is a course deal
+    // else if (state.deal.course){
+    //   //get cartItems with matching course
+    //   let applicableItems = items.filter(
+    //     (el) => el.course === state.deal.course
+    //   );
+    //   console.log(applicableItems);
+    //   if (!applicableItems) return items;
+
+    //   applicableItems.map((item) => {
+    //     //find highest price out of all applicableItems
+    //     if (
+    //       Number(item.price.replace("$", "")) >= itemToDiscount.price
+    //     ) {
+    //       itemToDiscount = item;
+    //     }
+    //   });
+    //   itemToDiscount.courseDiscount = state.deal.discountPercent;
+    //   updatedCart = [...items];
+    //   updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
+    //   return updatedCart;
+    // }
+
+
     //if deal is an item deal, set itemDiscount on the item
-    else if (state.deal.itemId) {
-      let applicableItem = items.find((item) => item.id == state.deal.itemId);
+    if (state.deal.itemId) {
+     let applicableItem = items.find((item) => item.id == state.deal.itemId);
       if (!applicableItem) return items;
       applicableItem.itemDiscount = state.deal.discountPercent;
 
       updatedCart = [...items];
       updatedCart[items.indexOf(applicableItem)] = applicableItem;
-      return updatedCart;
     }
+    return updatedCart;
   };
 
   //REDUCER
@@ -209,13 +242,14 @@ export const reducer = (state, { type, payload }) => {
           discountPercent: payload.discountPercent,
           discountType: payload.discountType,
           category: payload.category,
+          course: payload.course
         },
       };
 
-      case "SET_MENU_FILTER": 
+    case "SET_MENU_FILTER":
       return {
         ...state,
-        menuFilter: payload
-      }
+        menuFilter: payload,
+      };
   }
 };

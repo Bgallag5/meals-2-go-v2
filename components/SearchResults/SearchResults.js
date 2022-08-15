@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Spinner from '../Spinner/Spinner';
 
 export default function SearchResults(props) {
     const {item, handleSearchClick} = props;

@@ -10,13 +10,16 @@ import { GlobalContext } from "../../store/GlobalStore";
 import Image from "next/image";
 import SearchResults from "../SearchResults/SearchResults";
 import MenuModal from "../MenuModal/MenuModal";
+import Spinner from "../Spinner/Spinner";
 
 export default function Header() {
-  const { cartItems, cartModalOpen, toggleCartModal, menuItems } = useContext(GlobalContext);
+  const { cartItems, cartModalOpen, toggleCartModal, menuItems } =
+    useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [debounceSearchTerm, setDebounceSearchTerm] = useState("");
-  const [searchResults, setSearchResutls] = useState("");
+  const [searchResults, setSearchResutls] = useState(null);
   const [modal, setModal] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const headerRef = useRef();
@@ -47,6 +50,8 @@ export default function Header() {
   };
 
   const handleSearchChange = (e) => {
+    setSearchResutls(null);
+    setLoading(true);
     e.preventDefault();
     setSearchTerm(e.target.value);
   };
@@ -75,6 +80,8 @@ export default function Header() {
         matchingItems.push(menuItem);
       }
     });
+    //after mapping results clear loading
+    setLoading(false);
     //if no matching items - return a "disabled" "No Results"
     if (matchingItems.length < 1) {
       let noResults = [
@@ -150,7 +157,7 @@ export default function Header() {
           className="w-full z-20 p-1 pl-8 rounded-full bg-slate-200 placeholder:text-slate-500 border-0 outline-0"
           type={"text"}
         ></input>
-        {searchResults && (
+        {searchTerm && (
           <>
             <div
               onClick={clearSearchResults}
@@ -161,12 +168,16 @@ export default function Header() {
               onClick={(e) => e.stopPropagation()}
               ref={searchResultsRef}
               id={"search-results"}
-              className="absolute top-[50%] bg-white   z-10  max-h-[60vh] h-auto overflow-hidden overflow-y-scroll pb-4   border-[1px] border-black  w-full rounded-b-2xl"
+              className="absolute top-[50%] bg-white   z-10  max-h-[60vh] h-auto overflow-hidden overflow-y-scroll pb-4   border-[3px] border-black/80  w-full rounded-b-2xl"
             >
-              <div className="h-10 w-full flex justify-center relative "></div>
-              {searchResults.map((item) => {
+              <div className="h-10 w-full flex justify-center items-center relative "></div>
+              {loading && <Spinner />}
+              {searchResults?.map((item) => {
                 return (
-                  <SearchResults item={item} handleSearchClick={handleSearchClick} />
+                  <SearchResults
+                    item={item}
+                    handleSearchClick={handleSearchClick}
+                  />
                 );
               })}
             </div>
@@ -175,7 +186,7 @@ export default function Header() {
       </div>
       <div>
         <button
-        disabled={cartItems?.length < 1}
+          disabled={cartItems?.length < 1}
           onClick={() => handleToggleCartModal()}
           className={`btn justify-center md:w-auto md:h-auto lg:px-6 md:py-2 relative`}
         >

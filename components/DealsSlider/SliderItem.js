@@ -8,17 +8,20 @@ export default function SliderItem(props) {
     itemId,
     discountType,
     category,
+    course,
     subtext,
     discountStr,
   } = props;
   const { setDeal } = useContext(GlobalContext);
 
   const handleClaimDeal = () => {
+    if (!discount) return;
     let deal = {
       itemId,
       discountPercent: discount,
       discountType,
       category,
+      course,
     };
     setDeal(deal);
   };

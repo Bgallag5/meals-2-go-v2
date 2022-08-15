@@ -1,11 +1,8 @@
 import React, {useContext} from 'react';
-import Head from 'next/head'
-import Image from 'next/image';
 import Hero from '../components/Hero/Hero';
 import Categories from '../components/Cards/Categories';
 import TopRatedItems from '../components/TopRatedItems/TopRatedItems';
 import Deals from '../components/DealsSlider/Deals';
-import { GlobalContext } from "../store/GlobalStore";
 
 
 //Homepage

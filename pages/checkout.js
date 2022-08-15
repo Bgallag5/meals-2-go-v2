@@ -9,6 +9,7 @@ import {
   Select,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useRouter } from "next/router";
 import OrderSummary from "../components/Checkout/OrderSummary";
 import { GlobalContext } from "../store/GlobalStore";
 import { sendOrderConfirm } from "../utils/emailtransport";
@@ -17,6 +18,7 @@ export default function Checkout(props) {
   const { emailPublicKey } = props;
   const { cartItems, totalAmount, deal } = useContext(GlobalContext);
   const [formIsValid, setFormIsValid] = useState(false);
+  const router = useRouter();
 
   //on form change check for validity
   const handleFormChange = (e) => {
@@ -51,6 +53,7 @@ export default function Checkout(props) {
     console.log(finalAmount);
     if (isValid) {
       sendOrderConfirm(form.values, cartItems, finalAmount, emailPublicKey);
+      router.replace('/orderplaced')
     }
   };
 
@@ -84,7 +87,12 @@ export default function Checkout(props) {
     },
   });
 
-  useEffect(() => {}, [formIsValid]);
+  //if no items in cart, return to home page 
+  useEffect(() => {
+    if (!cartItems.length) {
+      router.replace('/')
+    }
+  }, []);
 
   return (
     <div className="checkout--container">
@@ -272,6 +280,7 @@ export default function Checkout(props) {
 
 export async function getStaticProps() {
   const emailPublicKey = "pNTXriRO3N0uoRw93";
+  
 
   return {
     props: {
