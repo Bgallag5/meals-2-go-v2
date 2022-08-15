@@ -32,7 +32,7 @@ export default function SliderItem(props) {
 
       <div className="flex flex-col items-center justify-start pt-6 gap-[20%] w-full h-40">
         <p className="text-xl">{discountStr}</p>
-        <p>{title}</p>
+        <p>{discount ? title : "Placeholder"}</p>
       </div>
       <div className="h-8 flex my-auto w-full items-center justify-center  absolute bottom-0">
         <p className="text-[.7rem] h-8 flex  items-center shrink  flex-shink-1">

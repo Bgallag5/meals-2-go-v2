@@ -92,7 +92,7 @@ export default function Checkout(props) {
     if (!cartItems.length) {
       router.replace('/')
     }
-  }, []);
+  });
 
   return (
     <div className="checkout--container">

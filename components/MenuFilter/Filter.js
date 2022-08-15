@@ -21,12 +21,14 @@ export default function Filter(props) {
   console.log(menuFilter);
 
   return (
-    <div className="flex flex-row gap-6 justify-center align-center mx-auto h-auto border border-secondary p-4">
+    <>
+    <div className="flex flex-row relative gap-6 justify-center align-center mx-auto h-auto border border-secondary rounded-full p-4">
       <div
         onClick={() => handleFilterClick("pizza")}
         className={`${
           menuFilter === "pizza" ? "filter-active" : ""
         } filter-option`}
+        title={"Pizza"}
       >
         <Image
           src={pizzaIcon}
@@ -34,13 +36,16 @@ export default function Filter(props) {
           height={40}
           width={40}
           className={"object-cover bg-cover pointer-events-none"}
+          
         />
+        
       </div>
       <div
         onClick={() => handleFilterClick("salad")}
         className={`${
           menuFilter === "salad" ? "filter-active" : ""
         } filter-option`}
+        title={"Salads"}
       >
         <Image
           src={saladIcon}
@@ -55,6 +60,7 @@ export default function Filter(props) {
         className={`${
           menuFilter === "sandwich" ? "filter-active" : ""
         } filter-option`}
+        title={"Burgers"}
       >
         <Image
           src={burgerIcon}
@@ -65,5 +71,7 @@ export default function Filter(props) {
         />
       </div>
     </div>
+    <p className="text-center">Find what you're looking for</p>
+    </>
   );
 }
