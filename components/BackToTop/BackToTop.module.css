@@ -9,27 +9,34 @@
     overflow: hidden;
     font-size: 2rem;
     color:black;
-    display: none;
+    /* display: none; */
+    visibility: hidden;
     opacity: 0;
 }
 
-.btnTop:hover{
+/* .btnTop:hover{
     transition: all .2s ease-in-out;
     transform:rotateY(180deg);
-}
+} */
 
-.btnTop:active{
-    animation: pulse .5s ease-in-out;
-}
+/* .btnTop:active{
+    animation: pulse .7s ease-in-out;
+} */
 
 @keyframes pulse {
     0%{
-        box-shadow: 0px 10px 15px var(--color-secondary);
+        box-shadow: 0px 0px 0px 0px  rgb(255, 255, 0, 1);
     }
-    50%{}
+    /* 80%{
+        box-shadow: 0px 0px 5px 20px rgb(255, 255, 0, .2);
+    } */
     100%{
-        box-shadow: 0px 10px 40px var(--color-secondary);
+        box-shadow: 0px 0px 5px 25px rgb(255, 255, 0, 0);
     }
+}
+
+.pulse{
+    animation: pulse .5s ease-in-out;
 }
 
 
