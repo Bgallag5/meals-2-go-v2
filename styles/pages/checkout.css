@@ -64,35 +64,3 @@
   color: rgb(249, 165, 8) !important;
   background-color: blue !important;
 }
-
-
-/* .form {
-  &__group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid $color-grey;
-  }
-  .form--row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    & > * {
-      width: auto;
-      padding-bottom: 1rem;
-    }
-  }
-
-  &__text--input {
-    width: 75%;
-
-    &:last-child {
-      padding-bottom: 1rem;
-      color: red;
-    }
-  }
-} */

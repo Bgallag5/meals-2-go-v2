@@ -6,6 +6,7 @@ import Provider from "../store/GlobalStore";
 import AppMessage from "../components/AppMessage/AppMessage";
 import CartModal from "../components/Cart/CartModal";
 import CookieMessage from "../components/CookieMessage/CookieMessage";
+import Loading from "../components/LoadingScreen/Loading";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Footer />
       {/* <CookieMessage /> */}
+      <Loading />
     </div>
     </Provider>
   );

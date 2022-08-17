@@ -16,7 +16,7 @@ import { sendOrderConfirm } from "../utils/emailtransport";
 
 export default function Checkout(props) {
   const { emailPublicKey } = props;
-  const { cartItems, totalAmount, deal } = useContext(GlobalContext);
+  const { cartItems, totalAmount, deal, toggleLoading, loading } = useContext(GlobalContext);
   const [formIsValid, setFormIsValid] = useState(false);
   const router = useRouter();
 
@@ -24,7 +24,6 @@ export default function Checkout(props) {
   const handleFormChange = (e) => {
     //call validate to check fields on every form change
     let isValid = form.validate();
-    console.log(isValid);
     //setState(valid/invalid) on every form change
     if (isValid.hasErrors === true) {
       setFormIsValid(false);
@@ -40,19 +39,19 @@ export default function Checkout(props) {
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     let isValid = form.validate();
-    console.log(isValid);
     let finalAmount;
-    console.log("TOTAL AMOUNT");
-    console.log(totalAmount);
     //if discount for full order, calc total for email JSX 
     if (deal.discountType === "order"){
       finalAmount = Number(Number(totalAmount) * Number((100 - deal.discountPercent) / 100)).toFixed(2)
     } else {
       finalAmount = totalAmount
     }
-    console.log(finalAmount);
     if (isValid) {
+      //toggle loading screen
+      toggleLoading(true);
+      //send order confirm
       sendOrderConfirm(form.values, cartItems, finalAmount, emailPublicKey);
+      //route to order confirm page
       router.replace('/orderplaced')
     }
   };
@@ -87,6 +86,13 @@ export default function Checkout(props) {
     },
   });
 
+  //on page load, set loading to false
+  useEffect(() => {
+    setTimeout(() => {
+      toggleLoading(false)
+    }, 500)
+  }, [])
+
   //if no items in cart, return to home page 
   useEffect(() => {
     if (!cartItems.length) {
@@ -104,7 +110,6 @@ export default function Checkout(props) {
           <h2 className="text-large mb2">Checkout Info</h2>
           <Box className="form--container">
             <form
-              // onSubmit={(e) => handleFormChange(e)}
               onChangeCapture={(e) => handleFormChange(e)}
               className="form flex-col"
               onSubmit={form.onSubmit((values) => console.log(values))}
@@ -281,8 +286,6 @@ export default function Checkout(props) {
 
 export async function getStaticProps() {
   const emailPublicKey = "pNTXriRO3N0uoRw93";
-  
-
   return {
     props: {
       emailPublicKey,

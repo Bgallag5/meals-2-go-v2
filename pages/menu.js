@@ -7,7 +7,7 @@ import Filter from "../components/MenuFilter/Filter";
 import BackToTop from "../components/BackToTop/BackToTop";
 
 export default function MainMenu() {
-  const { menuItems, addToCart, menuFilter, setMenuFilter } = useContext(GlobalContext);
+  const { menuItems, menuFilter, setMenuFilter } = useContext(GlobalContext);
 
   const [modalState, setModalState] = useState(undefined);
 

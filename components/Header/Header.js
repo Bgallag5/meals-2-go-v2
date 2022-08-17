@@ -7,13 +7,12 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { GlobalContext } from "../../store/GlobalStore";
-import Image from "next/image";
 import SearchResults from "../SearchResults/SearchResults";
 import MenuModal from "../MenuModal/MenuModal";
 import Spinner from "../Spinner/Spinner";
 
 export default function Header() {
-  const { cartItems, cartModalOpen, toggleCartModal, menuItems, addToCart } =
+  const { cartItems, cartModalOpen, toggleCartModal, menuItems} =
     useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [debounceSearchTerm, setDebounceSearchTerm] = useState("");

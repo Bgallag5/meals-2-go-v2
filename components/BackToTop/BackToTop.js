@@ -1,32 +1,35 @@
-import React, {useRef, useEffect} from 'react';
-import styles from './BackToTop.module.css';
-import { faArrowCircleUp, faArrowTrendUp, faAngleUp, faUpLong } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useRef, useEffect } from "react";
+import styles from "./BackToTop.module.css";
+import {
+  faAngleUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function BackToTop() {
+  const topRef = useRef();
 
-    const topRef = useRef();
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    const scrollToTop = () => {
-        window.scrollTo({top: 0, behavior: 'smooth'})
-    }
-
-    useEffect(() => {
-    //prevent scroll when sidebar is open
+  //if scrollY > 850 show back to top button
+  useEffect(() => {
     window.onscroll = function () {
-        console.log(window.scrollY);
-        if (window.scrollY >= 850){
-            topRef.current?.classList.add(`${styles.visible}`)
-        } else{
-            topRef.current?.classList.remove(`${styles.visible}`)
-        }
-      };
-
-    }, []);
-
-    // console.log(window.scrollY);
+      if (window.scrollY >= 850) {
+        topRef.current?.classList.add(`${styles.visible}`);
+      } else {
+        topRef.current?.classList.remove(`${styles.visible}`);
+      }
+    };
+  }, []);
 
   return (
-    <button ref={topRef} onClick={() => scrollToTop()} className={styles.btnTop}><FontAwesomeIcon icon={faAngleUp} /></button>
-  )
+    <button
+      ref={topRef}
+      onClick={() => scrollToTop()}
+      className={styles.btnTop}
+    >
+      <FontAwesomeIcon icon={faAngleUp} />
+    </button>
+  );
 }

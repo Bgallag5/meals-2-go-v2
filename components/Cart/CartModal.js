@@ -4,12 +4,15 @@ import CartItem from "./CartItem";
 import { useRouter } from "next/router";
 
 export default function CartModal() {
-  const { cartItems, totalAmount, toggleCartModal, cartModalOpen, deal } = useContext(GlobalContext);
+  const { cartItems, totalAmount, toggleCartModal, cartModalOpen, toggleLoading } = useContext(GlobalContext);
   const modalRef = useRef();
   const router = useRouter();
 
   const handleCheckoutClick = () => {
+    //toggle loading screen
+    toggleLoading(true)
     toggleCartModal(false)
+    //route to checkout page
     router.push('/checkout')
   }
   return (

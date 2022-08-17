@@ -254,5 +254,17 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         userCookie: true,
       };
+
+      case "TOGGLE_LOADING":
+        console.log(payload);
+        return {
+          ...state,
+          loading: payload
+        }
+
+        case "CLEAR_STATE":
+          return {
+            ...payload
+          }
   }
 };

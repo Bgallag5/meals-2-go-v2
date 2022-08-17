@@ -3,7 +3,6 @@ import { reducer } from "./reducers";
 import { menu } from "../pages/api/dummy-data";
 
 export const GlobalContext = React.createContext();
-// console.log(menu);
 
 const preLoadedState = {
   cartItems: [],
@@ -31,6 +30,7 @@ const preLoadedState = {
     idToken: undefined,
   },
   userCookie: false,
+  loading: false,
 };
 
 //create app context provider
@@ -68,6 +68,12 @@ const Provider = (props) => {
     const toggleCookie = () => {
       dispatch({type: "TOGGLE_COOKIE"})
     }
+    const toggleLoading = (isLoading) => {
+      dispatch({type: "TOGGLE_LOADING", payload: isLoading})
+    }
+    const clearState = () => {
+      dispatch({type: "CLEAR_STATE", payload: preLoadedState})
+    }
     
 
     //define app context values - state and global functions
@@ -82,6 +88,7 @@ const Provider = (props) => {
       deal: state.deal,
       menuFilter: state.menuFilter,
       userCookie: state.userCookie,
+      loading: state.loading,
       //store dispatch functions
       addToCart,
       setAppMessage,
@@ -92,6 +99,8 @@ const Provider = (props) => {
       setDeal,
       setMenuFilter,
       toggleCookie,
+      toggleLoading,
+      clearState,
       //helper functions
     };
 
