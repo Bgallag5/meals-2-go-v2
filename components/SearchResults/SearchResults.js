@@ -13,11 +13,10 @@ export default function SearchResults(props) {
     <div className="h-16 w-full flex flex-row justify-between m-0 p-0 relative text-sm">
       <div className="flex flex-row flex-1  gap-1">
         <p className="flex flex-1 justify-center">
-          {" "}
           {item.name}
         </p>
         <p className="w-20 text-center">
-          ${item.price && item.price}
+          {item.price && `$${item.price}`}
         </p>
       </div>
       <div className="relative h-full rounded-md overflow-hidden w-20 ">

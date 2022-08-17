@@ -33,7 +33,7 @@ export default function CartModal() {
           onClick={(e) => e.stopPropagation()}
           className={`cart ${
             cartModalOpen ? "cart-visible" : ""
-          } fixed  p-3 flex flex-col  top-0 right-0 overflow-y-scroll   h-screen min-h-[65%] w-1/3 2xl:w-1/4 z-50 bg-white`}
+          } fixed  p-3 flex flex-col  top-0 right-0 overflow-y-scroll   h-screen w-3/4 sm:w-1/2 md:w-1/3 2xl:w-1/4 z-50 bg-white`}
         >
           <span className="relative h-10 flex flex-row items-center w-full p-2 my-4 justify-center group">
             <button onClick={() => handleCheckoutClick()} data-tooltip-target="tooltip-default" disabled={cartItems.length < 1} className="btn-checkout ">Checkout: ${totalAmount}</button>

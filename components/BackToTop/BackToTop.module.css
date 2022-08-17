@@ -12,16 +12,8 @@
     /* display: none; */
     visibility: hidden;
     opacity: 0;
+    z-index: 999;
 }
-
-/* .btnTop:hover{
-    transition: all .2s ease-in-out;
-    transform:rotateY(180deg);
-} */
-
-/* .btnTop:active{
-    animation: pulse .7s ease-in-out;
-} */
 
 @keyframes pulse {
     0%{

@@ -206,7 +206,7 @@ export default function Header() {
           </label>
         </div>
       </div>
-      <div className="relative sm:flex  items-center justify-center w-96">
+      <div className="relative sm:flex  items-center justify-center text-center w-8 md:w-1/3">
         <FontAwesomeIcon
           className="absolute z-30 left-2 text-slate-800 text-xs"
           icon={faSearch}
@@ -215,7 +215,7 @@ export default function Header() {
           onChange={(e) => handleSearchChange(e)}
           value={searchTerm}
           placeholder="Search Foods..."
-          className="w-full z-20 p-1 pl-8 rounded-full bg-slate-200 placeholder:text-slate-500 border-0 outline-0"
+          className="w-full z-20 p-1 pl-8 rounded-full bg-slate-200 placeholder:text-opacity-0 md:placeholder:text-slate-500 border-0 outline-0"
           type={"text"}
         ></input>
         {searchTerm && (
