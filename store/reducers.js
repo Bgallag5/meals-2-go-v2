@@ -9,15 +9,14 @@ export const reducer = (state, { type, payload }) => {
       let discount = cur.categoryDiscount || cur.itemDiscount;
       //if no discount
       if (!discount) {
-        let itemTotal =
-          Number(cur.price.replace("$", "")) * Number(cur.quantity);
+        let itemTotal = cur.price * Number(cur.quantity);
         return acc + itemTotal;
       }
       //if discount, apply to cart total
       else if (discount) {
         let itemTotal = Number(
-          cur.price.replace("$", "") * Number(cur.quantity - 1) +
-            cur.price.replace("$", "") * ((100 - discount) / 100)
+          cur.price * Number(cur.quantity - 1) +
+            cur.price * ((100 - discount) / 100)
         );
         return acc + itemTotal;
       }
@@ -27,7 +26,7 @@ export const reducer = (state, { type, payload }) => {
 
   const applyDeal = (items) => {
     let itemToDiscount = {
-      price: "$0",
+      price: 0,
     };
     let applicableItems;
     //if no deal return
@@ -40,33 +39,32 @@ export const reducer = (state, { type, payload }) => {
     });
 
     //if deal is a category or course deal, find highest priced item in cart and set discount
-    if (state.deal.category || state.deal.course){
+    if (state.deal.category || state.deal.course) {
       console.log("COURSE:CATEGORY");
 
-    if (state.deal.category) {
-      applicableItems = items.filter(
-        (el) => el.category === state.deal.category
-      );
-    } else if (state.deal.course) {
-      applicableItems = items.filter((el) => el.course === state.deal.course);
-    }
-
-    if (!applicableItems) return items;
-    console.log(applicableItems);
-
-    applicableItems.map((item) => {
-      //find highest price out of all applicableItems
-      if (Number(item.price.replace("$", "")) >= Number(itemToDiscount.price.replace("$", ""))) {
-        itemToDiscount = item;
+      if (state.deal.category) {
+        applicableItems = items.filter(
+          (el) => el.category === state.deal.category
+        );
+      } else if (state.deal.course) {
+        applicableItems = items.filter((el) => el.course === state.deal.course);
       }
-    });
-    //set either course or category discount as "categoryDiscount" 
-    itemToDiscount.categoryDiscount = state.deal.discountPercent;
-    updatedCart = [...items];
-    updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
-    return updatedCart;
-  }
 
+      if (!applicableItems) return items;
+      console.log(applicableItems);
+
+      applicableItems.map((item) => {
+        //find highest price out of all applicableItems
+        if (item.price >= itemToDiscount.price) {
+          itemToDiscount = item;
+        }
+      });
+      //set either course or category discount as "categoryDiscount"
+      itemToDiscount.categoryDiscount = state.deal.discountPercent;
+      updatedCart = [...items];
+      updatedCart[items.indexOf(itemToDiscount)] = itemToDiscount;
+      return updatedCart;
+    }
 
     //if deal is a course deal
     // else if (state.deal.course){
@@ -80,7 +78,7 @@ export const reducer = (state, { type, payload }) => {
     //   applicableItems.map((item) => {
     //     //find highest price out of all applicableItems
     //     if (
-    //       Number(item.price.replace("$", "")) >= itemToDiscount.price
+    //       item.price >= itemToDiscount.price
     //     ) {
     //       itemToDiscount = item;
     //     }
@@ -91,10 +89,9 @@ export const reducer = (state, { type, payload }) => {
     //   return updatedCart;
     // }
 
-
     //if deal is an item deal, set itemDiscount on the item
     if (state.deal.itemId) {
-     let applicableItem = items.find((item) => item.id == state.deal.itemId);
+      let applicableItem = items.find((item) => item.id == state.deal.itemId);
       if (!applicableItem) return items;
       applicableItem.itemDiscount = state.deal.discountPercent;
 
@@ -242,7 +239,7 @@ export const reducer = (state, { type, payload }) => {
           discountPercent: payload.discountPercent,
           discountType: payload.discountType,
           category: payload.category,
-          course: payload.course
+          course: payload.course,
         },
       };
 
@@ -250,6 +247,12 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         menuFilter: payload,
+      };
+
+    case "TOGGLE_COOKIE":
+      return {
+        ...state,
+        userCookie: true,
       };
   }
 };

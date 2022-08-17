@@ -18,7 +18,7 @@ export default function SearchResults(props) {
           {item.name}
         </p>
         <p className="w-20 text-center">
-          {item.price && item.price}
+          ${item.price && item.price}
         </p>
       </div>
       <div className="relative h-full rounded-md overflow-hidden w-20 ">

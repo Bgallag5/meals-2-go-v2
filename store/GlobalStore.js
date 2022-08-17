@@ -30,6 +30,7 @@ const preLoadedState = {
     email: undefined,
     idToken: undefined,
   },
+  userCookie: false,
 };
 
 //create app context provider
@@ -64,6 +65,9 @@ const Provider = (props) => {
     const setMenuFilter = (filter) => {
       dispatch({type: 'SET_MENU_FILTER', payload: filter})
     }
+    const toggleCookie = () => {
+      dispatch({type: "TOGGLE_COOKIE"})
+    }
     
 
     //define app context values - state and global functions
@@ -77,6 +81,7 @@ const Provider = (props) => {
       user: state.user,
       deal: state.deal,
       menuFilter: state.menuFilter,
+      userCookie: state.userCookie,
       //store dispatch functions
       addToCart,
       setAppMessage,
@@ -86,6 +91,7 @@ const Provider = (props) => {
       deleteCartItem,
       setDeal,
       setMenuFilter,
+      toggleCookie,
       //helper functions
     };
 

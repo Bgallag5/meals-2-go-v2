@@ -28,7 +28,7 @@ export default function MenuItem(props) {
       >
         <h2 className="text-xl ">{name}</h2>
         <p className="menu__description"> {description}</p>
-        <p className="mt-3 text-orange-700">{price}</p>
+        <p className="mt-3 text-orange-700">${price}</p>
       </div>
       <div className="relative h-32 w-32 opacity-0 transition-all ease-linear duration-300 group-hover:opacity-100">
         <Image

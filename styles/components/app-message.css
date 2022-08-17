@@ -5,16 +5,20 @@
   transform: translate(100%, 5%);
   height: 5rem;
   width: 20rem;
-  background: linear-gradient(to top left, rgb(236, 227, 194) 70%, rgba(248, 219, 98) );
+  background: linear-gradient(
+    to top left,
+    rgb(236, 227, 194) 70%,
+    rgba(248, 219, 98)
+  );
   z-index: 99;
   display: none;
   flex-direction: row;
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
-  border: 1px solid rgba(0, 0, 0, .5)
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .app-message--active {
@@ -28,7 +32,7 @@
   20% {
     transform: translate(-30%, 5%);
   }
-  25%{
+  25% {
     transform: translate(-25%, 5%);
   }
   78% {
@@ -42,85 +46,49 @@
   }
 }
 
-
 /* COOKIES */
 
-.cookie{
-  height: 40rem;
-  transform: translateY(5rem);
+.cookie {
+  height: 6rem;
+  transform: translateY(150%);
   opacity: 0;
   visibility: hidden;
   /* transition:  all 1s ease-in-out; */
+  display: flex;
 }
 
-.cookie-visible{
-  animation: cookieSlideIn 20s linear;
-  /* transform: translateY(5rem); */
+.cookie-visible {
+  animation: cookieSlideIn 1.5s ease-in-out;
+  transform: translateY(0%);
   opacity: 100;
   visibility: visible;
-  /* height: 30rem; */
 }
-
-/* .fade-white{
-  animation: fadeWhite 22s linear;
-} */
-
-@keyframes fadeWhite{
-  0%{
-    color: black;
-  }
-  50%{
-    color: black;
-  }
-  60%{
-    color: white;
-  }
-  70%{
-    color: white;
-  }
-  80%{
-    color: black;
-  }
-}
-
 
 @keyframes cookieSlideIn {
-  0%{
-    height: 4rem;
-      visibility: visible;
-      opacity: 100;
-      
-    }
-    50%{
-      background-color: rgb(147 197 253);
+  0% {
+    visibility: visible;
+    opacity: 100;
+    transform: translateY(150%);
   }
-    60%{
-      background-color: white;
-  }
-  100%{
-    height: 35rem;
-    transform: translateY(0);
-    background-color: rgb(147 197 253);
+  100% {
+    transform: translateY(0%);
   }
 }
 
+.cookie__btn {
+  background-color: white;
+  height: 2rem;
+  width: 4rem;
+  padding: 0.3rem;
+  text-align: center;
+  border-radius: 3px;
+}
 
-.cookie__btn{
-    position: absolute;
-    top: 4rem;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    height: 2.5rem;
-    width: 4rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    /* box-shadow: 1px 1px 5px black; */
-    background-color: white;
-    z-index: 99;
-  }
+.cookie__btn:active {
+  transform: translateY(1px);
+}
 
-  .ok-ref{
+/* .ok-ref{
     left: 50%;
     transform: translate(-49%, -50%);
     z-index: 999;
@@ -134,4 +102,4 @@
 
   .ok-ref-still:active{
     transform: translate(-49%, -46%);
-  }
+  } */

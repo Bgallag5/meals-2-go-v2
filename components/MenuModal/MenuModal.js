@@ -56,7 +56,7 @@ export default function MenuModal(props) {
         </div>
         <p className="w-[90%] mx-auto">{description}</p>
         <div className="flex flex-row justify-center items-center mt-8 gap-2 w-full mx-auto">
-          <p className="w-1/3 text-lg text-orange-700">{price}</p>
+          <p className="w-1/3 text-lg text-orange-700">${price}</p>
           <div className="flex flex-col gap-2 justify-center w-1/3 h-full p-1 mx-2">
             <div className="flex flex-row gap-1 justify-center">
               <label htmlFor={id}>Quantity</label>

@@ -124,11 +124,12 @@ export default function Checkout(props) {
                   {...form.getInputProps("lastName")}
                 />
                 <TextInput
-                  className="form__text--input"
+                  className="form__text--input email--input"
                   required
                   label="Email"
                   placeholder="your@email.com"
                   type="email"
+                  pattern="^[A-Za-z0-9+_.-]+@(.+)$"
                   {...form.getInputProps("email")}
                 />
               </Group>

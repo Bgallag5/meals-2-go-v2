@@ -37,13 +37,13 @@ export default function CartItem({ item }) {
         {/* if our deal was a single item deal: */}
         {item.itemDiscount ? (
           <h2
-            data-price={Number(item.price.replace("$", "") * item.quantity)}
+            data-price={Number(item.price * item.quantity)}
             className=" discount-price"
           >
             $
             {Number(
-              item.price.replace("$", "") * Number(item.quantity - 1) +
-                item.price.replace("$", "") *
+              item.price * Number(item.quantity - 1) +
+                item.price *
                   ((100 - item.itemDiscount) / 100)
             ).toFixed(2)}
           </h2>
@@ -51,13 +51,13 @@ export default function CartItem({ item }) {
           <>
           {/* if our deal was a category deal - (item.categoryDeal added in reducer): */}
           <h2
-            data-price={Number(item.price.replace("$", "") * item.quantity)}
+            data-price={Number(item.price * item.quantity)}
             className=" discount-price"
           >
             $
             {Number(
-              item.price.replace("$", "") * Number(item.quantity - 1) +
-                item.price.replace("$", "") *
+              item.price * Number(item.quantity - 1) +
+                item.price *
                   ((100 - item.categoryDiscount) / 100)
             ).toFixed(2)}
           </h2>
@@ -66,7 +66,7 @@ export default function CartItem({ item }) {
           <h2 className="text-orange-600">
             $
             {Number(
-              item.price.replace("$", "") * Number(item.quantity)
+              item.price * Number(item.quantity)
             ).toFixed(2)}
           </h2>
         )}

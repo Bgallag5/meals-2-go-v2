@@ -4,6 +4,7 @@ import { GlobalContext } from "../store/GlobalStore";
 import MenuItem from "../components/MainMenu/MenuItem";
 import MenuModal from "../components/MenuModal/MenuModal";
 import Filter from "../components/MenuFilter/Filter";
+import BackToTop from "../components/BackToTop/BackToTop";
 
 export default function MainMenu() {
   const { menuItems, addToCart, menuFilter, setMenuFilter } = useContext(GlobalContext);
@@ -28,8 +29,6 @@ export default function MainMenu() {
     if (!menuFilter) return;
 
     items.forEach(item => {
-      console.log(item.dataset.category);
-      console.log(menuFilter);
       //if menuItem.category equals filter, add "active" classname
       if (item.dataset.category === menuFilter){
         item.classList.add("menu-item--active")
@@ -51,6 +50,7 @@ export default function MainMenu() {
 
   return (
     <>
+    <BackToTop />
       <div className="flex flex-col bg-primary/80 rounded z-20">
         <h1 className="text-2xl text-center my-10">Main Menu</h1>
         <div className=" menu__section">

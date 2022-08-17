@@ -13,7 +13,7 @@ import MenuModal from "../MenuModal/MenuModal";
 import Spinner from "../Spinner/Spinner";
 
 export default function Header() {
-  const { cartItems, cartModalOpen, toggleCartModal, menuItems } =
+  const { cartItems, cartModalOpen, toggleCartModal, menuItems, addToCart } =
     useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [debounceSearchTerm, setDebounceSearchTerm] = useState("");
@@ -114,6 +114,68 @@ export default function Header() {
     modalBackdropRef.current.classList.add("modal-hidden");
   };
 
+  //take cart items and set itemIDs to Local Storage 
+  const saveCartItemsLS = (items) => {
+    // let itemIDs = items.map(item => item.id);
+    // console.log(itemIDs);
+    let itemsToSave = [];
+    items.forEach((item) => {
+      itemsToSave.push({id: item.id, quantity: item.quantity})
+    });
+    console.log(itemsToSave);
+    localStorage.setItem("cart_items", JSON.stringify(itemsToSave));
+  }
+
+  //on cartItems change save to LS
+  useEffect(() => { 
+    if (!cartItems.length) return;
+    console.log(cartItems);
+    saveCartItemsLS(cartItems);
+  },[cartItems]);
+
+
+
+  // //get cart item IDs from localStorage and set cart items on mount
+  // useEffect(() => {
+  //   const savedItemIDs = JSON.parse(localStorage.getItem("cart_items"));
+  //   if (!savedItemIDs?.length) return
+  //   console.log("SAVED ITEM IDS");
+  //   console.log(savedItemIDs);
+  //   let savedItems = [];
+
+  //   for (const item of savedItemIDs){
+  //     // console.log(item);
+  //     // console.log(savedItemIDs?.includes(item.id));
+  //     // if (savedItemIDs?.includes(item.id)){
+  //     //   savedItems.push(item)
+  //     // }
+  //    let menuItem = menuItems.find(menuItem => menuItem.id === item.id);
+  //    if (menuItem){
+  //     let newItem = {
+  //       ...menuItem,
+  //       quantity: item.quantity,  
+  //     }
+  //     savedItems.push(newItem)
+  //    }
+  //   }
+  //   console.log(savedItems); // quantity = undefined
+  //   //THIS ALL WORKS FINE BUT RUNS TWICE, ADDING DOUBLE CART ITEMS 
+  //   setTimeout(() => {
+  //     savedItems.forEach(item => {
+  //       console.log(item);
+  //       //quantity is handled in reducer - need to pass in quantity separately from item
+  //       let quantity = item.quantity;
+  //       delete item.quantity;
+  //       addToCart(item, quantity)
+  //     });
+
+  //   }, 3000)
+  // }, []);
+
+  // console.log(cartItems);
+
+
+
   return (
     <div
       ref={headerRef}
@@ -204,3 +266,5 @@ export default function Header() {
     </div>
   );
 }
+
+

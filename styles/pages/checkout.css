@@ -59,6 +59,13 @@
     color: red;
 }
 
+
+.email--input:has(:invalid){
+  color: rgb(249, 165, 8) !important;
+  background-color: blue !important;
+}
+
+
 /* .form {
   &__group {
     display: flex;

@@ -54,6 +54,7 @@ a {
   body {
     color: white;
     background: black;
+    scroll-behavior: smooth;
 
   }
 }

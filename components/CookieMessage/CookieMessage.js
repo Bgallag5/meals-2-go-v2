@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import $ from 'jquery';
+import React, { useEffect, useRef, useContext } from "react";
+import $ from "jquery";
+import { GlobalContext } from "../../store/GlobalStore";
 
 export default function CookieMessage() {
+  const { userCookie } = useContext(GlobalContext);
   const cookieRef = useRef();
   const okRef = useRef();
 
@@ -11,47 +13,43 @@ export default function CookieMessage() {
       window.location.assign("https://www.google.com/");
       return;
     }
-
     cookieRef.current.classList.remove("cookie-visible");
+    setCookie("user", "username", 1);
   };
 
+  //dont show cookie message if user already has a cookie saved
   useEffect(() => {
     setTimeout(() => {
-      cookieRef.current.classList.add("cookie-visible");
+      if (userCookie) {
+        cookieRef.current?.classList.remove("cookie-visible");
+        return;
+      } else if (!userCookie) {
+        cookieRef.current?.classList.add("cookie-visible");
+      }
     }, 2000);
-  }, []);
+  }, [userCookie]);
 
+  //set a cookie to expire in x days
+  function setCookie(name, value, expDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
+    let expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires}`;
+    // document.cookie = `${name}=${value};${expires};path=/`
+  }
 
-useEffect(() => {
-    const cookie = document.querySelector('.cookie')
-    console.log(cookie);
-    $(".ok-ref").on({
-        mouseover: function() {
-            console.log(cookieRef.current)
-          $(this).css({
-            left: (Math.random() * window.innerWidth) + 'px',
-            top: (Math.random() * (cookieRef.current.clientHeight * .5)) + 'px',
-          });
-        }
-      });
-}, []);
-
-useEffect(() => {
-    setTimeout(() => {
-        okRef.current.classList.add('ok-ref-still')
-    }, 22000)
-}, [])
 
   return (
     <div
       ref={cookieRef}
-      className="cookie fixed flex flex-row gap-8  bottom-0 left-0 w-full bg-blue-300"
+      className="cookie fixed flex flex-row gap-3 justify-center items-center  bottom-0 left-0 w-full bg-blue-300"
     >
+      <div className="mr-4">This site uses cookies!</div>
       <button
         ref={okRef}
         onClick={(e) => handleCookieBtnClick(e)}
         data-confirm={"true"}
-        className={"cookie__btn ok-ref fade-white"}
+        className={"cookie__btn"}
       >
         Ok
       </button>
@@ -62,13 +60,6 @@ useEffect(() => {
       >
         Leave
       </button>
-      <div className="absolute top-[4rem] left-[35%] -translate-y-[50%] flex items-center h-[2.5rem]">
-        This site uses cookies!
-      </div>
-      {/* <div className="flex w-[40vw] test flex-row fixed top-[2.5rem] left-[50%] -translate-x-[40%]  items-center justify-start gap-10">
-        <div className="flex h-auto relative flex-row gap-2">
-        </div>
-      </div> */}
     </div>
   );
 }
