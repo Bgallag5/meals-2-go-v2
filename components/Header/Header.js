@@ -178,7 +178,7 @@ export default function Header() {
   return (
     <div
       ref={headerRef}
-      className="w-full  mb-8 h-16 flex flex-row items-center justify-between"
+      className="w-full  mb-8 h-16 flex flex-row items-center justify-between px-1"
     >
       {modal && <MenuModal setModalState={setModal} item={modal} />}
       <div className="relative flex flex-row gap-1 h-full items-center">
@@ -206,7 +206,7 @@ export default function Header() {
           </label>
         </div>
       </div>
-      <div className="relative sm:flex  items-center justify-center text-center w-8 md:w-1/3">
+      <div className="relative hidden md:flex  items-center justify-center text-center  md:w-96">
         <FontAwesomeIcon
           className="absolute z-30 left-2 text-slate-800 text-xs"
           icon={faSearch}

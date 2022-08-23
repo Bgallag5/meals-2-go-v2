@@ -6,13 +6,17 @@ import {
   faUsers,
   faTruck,
   faArrowLeft,
-  faClose
+  faBurger
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useEffect} from "react";
 import SidebarItem from "./SidebarItem";
+import { useRouter } from "next/router";
 
 export default function Sidebar() {
+
+  const router = useRouter()
+
   const handleHideSidebar = () => {
     document.querySelector('body').classList.remove('popup-active')
     const sidebarRef = document.querySelector("#sidebar");
@@ -23,6 +27,13 @@ export default function Sidebar() {
     popupRef.style.height = "0%";
     popupRef.style.transform = "scale(1)";
   };
+
+  const handleNavigate = (path) => {
+    if (!path) return
+
+    handleHideSidebar()
+    router.push(path)
+  }
 
 
   return (
@@ -47,12 +58,12 @@ export default function Sidebar() {
         </div>
 
         <div className="flex flex-col gap-3 w-full h-auto mt-4">
-          <SidebarItem title={"Orders"} icon={faTruck} />
-          <SidebarItem title={"Favorites"} icon={faHeart} />
-          <SidebarItem title={"Wallet"} icon={faWallet} />
-          <SidebarItem title={"Help"} icon={faQuestion} />
-          <SidebarItem title={"Promotions"} icon={faTag} />
-          <SidebarItem title={"Invite Friends"} icon={faUsers} />
+          <SidebarItem path={'/menu'} title={"Menu"} icon={faBurger} handleNavigate={handleNavigate} />
+          <SidebarItem title={"Orders"} icon={faTruck} handleNavigate={handleNavigate} />
+          <SidebarItem title={"Favorites"} icon={faHeart} handleNavigate={handleNavigate} />
+          <SidebarItem title={"Help"} icon={faQuestion} handleNavigate={handleNavigate} />
+          <SidebarItem title={"Promotions"} icon={faTag} handleNavigate={handleNavigate} />
+          <SidebarItem title={"Invite Friends"} icon={faUsers} handleNavigate={handleNavigate} />
         </div>
       </div>
     </>

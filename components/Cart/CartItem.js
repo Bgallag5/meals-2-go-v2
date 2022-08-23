@@ -23,7 +23,7 @@ export default function CartItem({ item }) {
   };
 
   return (
-    <div className="w-full my-1 h-36 flex flex-row lg:justify-between justify-center gap-5 bg-white shadow-md shadow-black/30 p-1 rounded-md border-black/30 border">
+    <div className="w-full 2xl:w-4/5 my-1 h-36 flex flex-row lg:justify-between justify-center gap-5 bg-white shadow-md shadow-black/30 p-1 rounded-md border-black/30 border">
       <div className="relative hidden lg:inline h-26 rounded-md overflow-hidden border border-black/50 shadow-sm shadow-black/60 w-1/3 ">
         <Image
           className=""
@@ -31,7 +31,7 @@ export default function CartItem({ item }) {
           src={require(`../../assets/images/${item.image}`)}
         />
       </div>
-      <div className="flex flex-col gap-1 text-center w-1/3 items-center justify-center">
+      <div className="flex flex-col gap-1 text-center w-1/2 md:w-1/3 items-center justify-center">
         <h1 className="">{item.name}</h1>
         <h2>x {item.quantity}</h2>
         {/* if our deal was a single item deal: */}

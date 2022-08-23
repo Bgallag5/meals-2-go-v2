@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { GlobalContext } from "../../store/GlobalStore";
 import CartItem from "./CartItem";
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ export default function CartModal() {
   const { cartItems, totalAmount, toggleCartModal, cartModalOpen, toggleLoading } = useContext(GlobalContext);
   const modalRef = useRef();
   const router = useRouter();
+  const swipeLengthRef = useRef()
 
   const handleCheckoutClick = () => {
     //toggle loading screen
@@ -15,6 +16,25 @@ export default function CartModal() {
     //route to checkout page
     router.push('/checkout')
   }
+
+  useEffect(() => {
+    //get width of mobile nav
+    let modalWidth = modalRef.current.offsetWidth;
+    //capture touch start - position X
+    modalRef.current.addEventListener("touchstart", (e) => {
+      swipeLengthRef.current = e.touches[0].clientX;
+    });
+    //capture difference between touchStart clientX and touchMove clientX
+    modalRef.current.addEventListener("touchmove", (e) => {
+      let threshold = e.touches[0].clientX - swipeLengthRef.current;
+
+      //if threshold is 1/3 the width of nav - close nav
+      if (threshold * 3 >= modalWidth) {
+        toggleCartModal(false)
+      }
+    });
+  }, []);
+
   return (
     <div
       onClick={() => toggleCartModal(false)}

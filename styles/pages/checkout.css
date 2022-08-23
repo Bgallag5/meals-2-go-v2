@@ -10,7 +10,7 @@
   flex-direction: row;
   width: 90%;
   justify-content: center;
-  margin: 5rem auto 1rem auto;
+  margin: 5rem 0rem 1rem 0rem;
   background: lightgrey;
   border-radius: .3rem;
   box-shadow: lightgrey;
@@ -22,8 +22,9 @@
   justify-content: left;
 }
 
+
 .checkout__info {
-  border-left: 1px solid grey;
+  /* border-left: 1px solid grey !important; */
   display: flex;
   flex-direction: column;
 }
@@ -56,11 +57,27 @@
 }
 .form__text--input:last-child{
     padding-bottom: 1rem;
-    color: red;
 }
 
 
 .email--input:has(:invalid){
   color: rgb(249, 165, 8) !important;
   background-color: blue !important;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px){
+  .checkout > * {
+    padding: .5rem;
+  }
+  .form--row > * {
+    width: 45%;
+}
+.form__text--input{
+  width: 100%;
+}
+.checkout__info {
+  padding: 0rem 2rem 8rem 2rem;
+}
 }

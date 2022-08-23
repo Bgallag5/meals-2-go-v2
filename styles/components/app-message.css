@@ -55,6 +55,7 @@
   visibility: hidden;
   /* transition:  all 1s ease-in-out; */
   display: flex;
+  z-index: 1999;
 }
 
 .cookie-visible {

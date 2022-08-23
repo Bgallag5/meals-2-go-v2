@@ -27,7 +27,7 @@ export default function SliderItem(props) {
   };
 
   return (
-    <div onClick={() => handleClaimDeal()} id={itemId} className="slider-item">
+    <div  id={itemId} className="slider-item">
         <div className="slider-half slider-half--front">
 
       <div className="flex flex-col items-center justify-start pt-6 gap-[20%] w-full h-40">
@@ -41,7 +41,7 @@ export default function SliderItem(props) {
       </div>
         </div>
       <div className="slider-half slider-half--back">
-       <button className="btn h-10 w-36 rounded-full bg-primary text-white text-lg shadow-sm hover:scale-[105%] active:translate-y-[1px] text-center">Claim Deal</button> 
+       <button onClick={() => handleClaimDeal()} className="btn h-10 w-36 rounded-full bg-primary text-white text-lg shadow-sm hover:scale-[105%] active:translate-y-[1px] text-center">Claim Deal</button> 
       </div>
     </div>
   );

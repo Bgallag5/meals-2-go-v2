@@ -101,17 +101,17 @@ export default function Checkout(props) {
   });
 
   return (
-    <div className="checkout--container">
-      <div className="checkout flex-row">
-        <div className="checkout__summary flex-col">
+    <div className="checkout--container ">
+      <div className="checkout w-full md:w-[90%] flex-col md:flex-row">
+        <div className="checkout__summary w-full md:w-1/2 flex-col">
           <OrderSummary />
         </div>
-        <div className="checkout__info flex-col">
+        <div className="checkout__info items-center w-full md:w-1/2 flex-col">
           <h2 className="text-large mb2">Checkout Info</h2>
           <Box className="form--container">
             <form
               onChangeCapture={(e) => handleFormChange(e)}
-              className="form flex-col"
+              className="form flex-col "
               onSubmit={form.onSubmit((values) => console.log(values))}
             >
               <Group className="form__group" position="left" mt="0">

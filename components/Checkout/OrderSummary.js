@@ -41,7 +41,7 @@ export default function OrderSummary() {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col">
+    <div className="w-full h-auto flex flex-col items-center">
       {cartItems &&
         cartItems.map((item) => {
           return <CartItem item={item} />;

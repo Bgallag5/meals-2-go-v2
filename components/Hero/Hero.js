@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 export default function Hero() {
     const router = useRouter()
   return (
-    <div className="flex flex-col shadow-sm shadow-black justify-center relative text-2xl sm:text-3xl md:text-4xl font-bold bg-black text-white w-full h-[35vh] lg:h-[50vh] 2xl:h-[65vh] pl-8 md:pl-24">
+    <div className=" flex flex-col shadow-sm shadow-black justify-center rounded-sm overflow-hidden relative text-2xl sm:text-3xl md:text-4xl font-bold bg-black text-white w-full h-[35vh] lg:h-[50vh] 2xl:h-[65vh] pl-8 md:pl-24">
       <div id="hero" className=" h-[65vh] w-full"></div>
       <div className="absolute">
         <h1>

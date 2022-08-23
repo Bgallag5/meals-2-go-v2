@@ -161,3 +161,13 @@
 .slider-dot--active {
   background-color: var(--color-secondary);
 }
+
+
+
+@media only screen and (max-width: 600px){
+  .slider-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 calc(100% - var(--slider-gap));
+  }
+}

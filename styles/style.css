@@ -63,7 +63,7 @@ a {
 
 @layer base{
   .app__container{
-  @apply px-8 md:px-24 relative min-h-screen max-w-[100%] w-screen overflow-x-hidden;
+  @apply px-2  md:px-24 relative min-h-screen max-w-[100%] w-screen overflow-x-hidden;
   }
   .page__container{
     @apply flex flex-col gap-10 m-0 overflow-x-hidden;
