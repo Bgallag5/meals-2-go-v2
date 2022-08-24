@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -96,7 +96,7 @@ export default function Header() {
       return;
     }
     setSearchResutls(matchingItems);
-  }, [debounceSearchTerm]);
+  }, [debounceSearchTerm, menuItems, searchTerm]);
 
   //click on results opens item modal
   const handleSearchClick = (item) => {
