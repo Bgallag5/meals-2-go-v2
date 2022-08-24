@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import Hero from "../components/Hero/Hero";
 import Categories from "../components/Cards/Categories";
@@ -16,7 +17,7 @@ export default function Home(props) {
     else if (cookie) {
       toggleCookie();
     }
-  }, [cookie, toggleCookie]);
+  }, []);
 
   return (
     <div className="page__container">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import SliderItem from "./SliderItem";
 
@@ -9,14 +10,14 @@ export default function Deals() {
   const [btsnDisabled, setBtnsDisabled] = useState(false);
 
   //click on slider nav Btns
-  const handleSliderBtnClick = useCallback((e) => {
+  const handleSliderBtnClick = (e) => {
     e.preventDefault();
     if (e.target.dataset.direction === "right") {
       setSliderIndex(sliderIndex - 1);
     } else if (e.target.dataset.direction === "left") {
       setSliderIndex((prev) => prev + 1);
     }
-  }, [sliderIndex]) 
+  }
 
   //timer + useEffect - disable buttons for 750ms after click
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Deals() {
       sliderBtnLeft.current.disabled = false;
     }
     sliderBtnRight.current.onclick = (e) => handleSliderBtnClick(e);
-  }, [handleSliderBtnClick, sliderIndex]);
+  }, [sliderIndex]);
 
   //intersection observer
   useEffect(() => {

@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../store/GlobalStore";
 import Transition from "react-transition-group/Transition";
 
 export default function AppMessage(props) {
   const { appMessage, clearAppMessage } = useContext(GlobalContext);
-  //   console.log(appMessage);
 
   //clear app message after 'timer' seconds
   useEffect(() => {
