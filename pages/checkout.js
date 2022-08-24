@@ -91,7 +91,7 @@ export default function Checkout(props) {
     setTimeout(() => {
       toggleLoading(false)
     }, 500)
-  }, [])
+  }, [toggleLoading])
 
   //if no items in cart, return to home page 
   useEffect(() => {

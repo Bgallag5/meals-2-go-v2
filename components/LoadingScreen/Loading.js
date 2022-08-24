@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import { GlobalContext } from "../../store/GlobalStore";
 import styles from "./Loading.module.css";
 import Spinner from "../Spinner/Spinner";

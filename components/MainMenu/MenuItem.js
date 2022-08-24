@@ -18,7 +18,10 @@ export default function MenuItem(props) {
   };
 
   return (
-    <div data-category={category} className="menu-item relative flex flex-col md:flex-row gap-6 h-auto min-h-[10rem] lg:min-h-0 lg:h-32 bg-white w-full group ">
+    <div
+      data-category={category}
+      className="menu-item relative flex flex-col md:flex-row gap-6 h-auto min-h-[10rem] lg:min-h-0 lg:h-32 bg-white w-full group "
+    >
       <div
         onClick={() => showItemModal(props.item)}
         className="cursor-pointer flex flex-col flex-1 h-full max-w-2/3 group p-2 px-5"
@@ -30,8 +33,10 @@ export default function MenuItem(props) {
       <div className="relative hidden md:flex h-32 w-32 opacity-0 transition-all ease-linear duration-300 group-hover:opacity-100">
         <Image
           className="object-cover rounded-sm"
-          src={require(`../../assets/images/${image}`)}
+          src={require(`../../public/images/${image}`)}
           layout="fill"
+          alt={"menu-item"}
+          quality="50"
         />
       </div>
       <div className="flex flex-col gap-2 justify-center w-1/2 md:w-32 h-full my-auto p-1 mx-2 ">

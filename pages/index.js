@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import Hero from "../components/Hero/Hero";
 import Categories from "../components/Cards/Categories";

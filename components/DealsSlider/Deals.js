@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import SliderItem from "./SliderItem";
 
 export default function Deals() {
@@ -16,7 +17,7 @@ export default function Deals() {
     } else if (e.target.dataset.direction === "left") {
       setSliderIndex((prev) => prev + 1);
     }
-  };
+  }
 
   //timer + useEffect - disable buttons for 750ms after click
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function Deals() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-3">
-      <h1 className="text-center text-3xl text-primary">This Week's Deals!</h1>
+      <h1 className="text-center text-3xl text-primary">This Week&apos;s Deals!</h1>
       <div className="w-full flex flex-row gap-2 items-center justify-center">
         <span
           onClick={() => setSliderIndex(0)}

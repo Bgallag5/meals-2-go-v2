@@ -29,9 +29,6 @@
   flex-direction: column;
 }
 
-.form--container {
-}
-
 .form__group{
     display: flex;
     flex-direction: column;

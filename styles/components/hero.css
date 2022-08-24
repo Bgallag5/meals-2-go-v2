@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* darken background image */
 /* 
 1. set bg-color to black with low opacity
@@ -10,11 +9,11 @@
 3. use background-position to center, and move left Xpx:
    background-position: center left 150px;
 */
-#hero{
-    background-color: rgba(0, 0, 0, .5);
-    background-blend-mode:darken;
-    background-image: url('../../assets/images/hero-burger.jpg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center left 10rem;
+#hero {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  background-image: url("../../public/images/hero-burger.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center left 10rem;
 }

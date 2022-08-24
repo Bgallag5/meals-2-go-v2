@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -134,47 +136,6 @@ export default function Header() {
 
 
 
-  // //get cart item IDs from localStorage and set cart items on mount
-  // useEffect(() => {
-  //   const savedItemIDs = JSON.parse(localStorage.getItem("cart_items"));
-  //   if (!savedItemIDs?.length) return
-  //   console.log("SAVED ITEM IDS");
-  //   console.log(savedItemIDs);
-  //   let savedItems = [];
-
-  //   for (const item of savedItemIDs){
-  //     // console.log(item);
-  //     // console.log(savedItemIDs?.includes(item.id));
-  //     // if (savedItemIDs?.includes(item.id)){
-  //     //   savedItems.push(item)
-  //     // }
-  //    let menuItem = menuItems.find(menuItem => menuItem.id === item.id);
-  //    if (menuItem){
-  //     let newItem = {
-  //       ...menuItem,
-  //       quantity: item.quantity,  
-  //     }
-  //     savedItems.push(newItem)
-  //    }
-  //   }
-  //   console.log(savedItems); // quantity = undefined
-  //   //THIS ALL WORKS FINE BUT RUNS TWICE, ADDING DOUBLE CART ITEMS 
-  //   setTimeout(() => {
-  //     savedItems.forEach(item => {
-  //       console.log(item);
-  //       //quantity is handled in reducer - need to pass in quantity separately from item
-  //       let quantity = item.quantity;
-  //       delete item.quantity;
-  //       addToCart(item, quantity)
-  //     });
-
-  //   }, 3000)
-  // }, []);
-
-  // console.log(cartItems);
-
-
-
   return (
     <div
       ref={headerRef}
@@ -236,6 +197,7 @@ export default function Header() {
               {searchResults?.map((item) => {
                 return (
                   <SearchResults
+                  key={item.id}
                     item={item}
                     handleSearchClick={handleSearchClick}
                   />

@@ -9,7 +9,7 @@ import {
   faBurger
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {useEffect} from "react";
+import React from "react";
 import SidebarItem from "./SidebarItem";
 import { useRouter } from "next/router";
 

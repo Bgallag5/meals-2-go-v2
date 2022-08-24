@@ -5,7 +5,6 @@ import Footer from "../components/Footer/Footer";
 import Provider from "../store/GlobalStore";
 import AppMessage from "../components/AppMessage/AppMessage";
 import CartModal from "../components/Cart/CartModal";
-import CookieMessage from "../components/CookieMessage/CookieMessage";
 import Loading from "../components/LoadingScreen/Loading";
 
 function MyApp({ Component, pageProps }) {
@@ -18,7 +17,6 @@ function MyApp({ Component, pageProps }) {
       <Sidebar />
       <Component {...pageProps} />
       <Footer />
-      {/* <CookieMessage /> */}
       <Loading />
     </div>
     </Provider>
@@ -30,3 +28,11 @@ function MyApp({ Component, pageProps }) {
 
 
 export default MyApp;
+
+/*
+NOT:
+CartModal
+AppMessage
+Header
+
+*/
