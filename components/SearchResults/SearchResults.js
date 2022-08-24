@@ -18,7 +18,7 @@ export default function SearchResults(props) {
         <div className="relative h-full rounded-md overflow-hidden w-20 ">
           {item.image && (
             <Image
-              className="object-cover rouned-md"
+              className="object-cover rouned-md skeleton"
               layout={"fill"}
               src={require(`../../public/images/${item.image}`)}
               alt={"result"}
