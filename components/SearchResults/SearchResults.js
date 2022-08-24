@@ -25,6 +25,7 @@ export default function SearchResults(props) {
             className="object-cover rouned-md"
             layout={"fill"}
             src={require(`../../assets/images/${item.image}`)}
+            alt={"result"}
           />
         )}
       </div>

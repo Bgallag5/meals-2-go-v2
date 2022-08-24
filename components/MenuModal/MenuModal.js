@@ -51,6 +51,7 @@ export default function MenuModal(props) {
               className="object-cover"
               src={require(`../../assets/images/${image}`)}
               layout="fill"
+              alt={"menu-item"}
             />
           </div>
         </div>

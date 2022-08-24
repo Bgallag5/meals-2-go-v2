@@ -36,6 +36,7 @@ export default function Filter(props) {
           height={40}
           width={40}
           className={"object-cover bg-cover pointer-events-none"}
+          alt={"filter"}
           
         />
         
@@ -53,6 +54,7 @@ export default function Filter(props) {
           height={40}
           width={40}
           className={"object-cover bg-cover"}
+          alt={"filter"}
         />
       </div>
       <div
@@ -68,10 +70,11 @@ export default function Filter(props) {
           height={40}
           width={40}
           className={""}
+          alt={"filter"}
         />
       </div>
     </div>
-    <p className="text-center">Find what you're looking for</p>
+    <p className="text-center">Find what you&apos;re looking for</p>
     </>
   );
 }

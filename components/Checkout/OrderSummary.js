@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { deals } from "../../pages/api/dummy-data";
 import { GlobalContext } from "../../store/GlobalStore";
 import CartItem from "../Cart/CartItem";
 
@@ -44,7 +43,7 @@ export default function OrderSummary() {
     <div className="w-full h-auto flex flex-col items-center">
       {cartItems &&
         cartItems.map((item) => {
-          return <CartItem item={item} />;
+          return <CartItem key={item.id} item={item} />;
         })}
       <div>
           <OrderTotal />
