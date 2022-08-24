@@ -65,7 +65,7 @@ export default function CartModal() {
           </span>
           <div className="relative flex-grow-1 flex-shrink w-full ">
             {cartItems.map((item) => {
-              return <CartItem item={item} />;
+              return <CartItem key={item.id} item={item} />;
             })}
           </div>
         </div>

@@ -236,6 +236,7 @@ export default function Header() {
               {searchResults?.map((item) => {
                 return (
                   <SearchResults
+                  key={item.id}
                     item={item}
                     handleSearchClick={handleSearchClick}
                   />

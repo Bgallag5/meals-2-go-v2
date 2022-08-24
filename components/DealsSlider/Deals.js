@@ -78,7 +78,7 @@ export default function Deals() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-3">
-      <h1 className="text-center text-3xl text-primary">This Week's Deals!</h1>
+      <h1 className="text-center text-3xl text-primary">This Week&apos;s Deals!</h1>
       <div className="w-full flex flex-row gap-2 items-center justify-center">
         <span
           onClick={() => setSliderIndex(0)}

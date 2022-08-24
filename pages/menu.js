@@ -60,7 +60,7 @@ export default function MainMenu() {
             {menuItems &&
               menuItems.map((item) => {
                 if (item.course !== "starter") return null;
-                return <MenuItem item={item} showItemModal={showItemModal} />;
+                return <MenuItem key={item.id} item={item} showItemModal={showItemModal} />;
               })}
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function MainMenu() {
             {menuItems &&
               menuItems.map((item) => {
                 if (item.course !== "main") return null;
-                return <MenuItem item={item} showItemModal={showItemModal} />;
+                return <MenuItem key={item.id} item={item} showItemModal={showItemModal} />;
               })}
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function MainMenu() {
             {menuItems &&
               menuItems.map((item) => {
                 if (item.course !== "dessert") return null;
-                return <MenuItem item={item} showItemModal={showItemModal} />;
+                return <MenuItem key={item.id} item={item} showItemModal={showItemModal} />;
               })}
           </div>
         </div>
