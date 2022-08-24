@@ -28,7 +28,7 @@ export default function CartItem({ item }) {
         <Image
           className=""
           layout="fill"
-          src={require(`../../assets/images/${item.image}`)}
+          src={require(`../../public/images/${item.image}`)}
           alt={"cart-item"}
         />
       </div>
@@ -44,31 +44,26 @@ export default function CartItem({ item }) {
             $
             {Number(
               item.price * Number(item.quantity - 1) +
-                item.price *
-                  ((100 - item.itemDiscount) / 100)
+                item.price * ((100 - item.itemDiscount) / 100)
             ).toFixed(2)}
           </h2>
         ) : item.categoryDiscount ? (
           <>
-          {/* if our deal was a category deal - (item.categoryDeal added in reducer): */}
-          <h2
-            data-price={Number(item.price * item.quantity)}
-            className=" discount-price"
-          >
-            $
-            {Number(
-              item.price * Number(item.quantity - 1) +
-                item.price *
-                  ((100 - item.categoryDiscount) / 100)
-            ).toFixed(2)}
-          </h2>
+            {/* if our deal was a category deal - (item.categoryDeal added in reducer): */}
+            <h2
+              data-price={Number(item.price * item.quantity)}
+              className=" discount-price"
+            >
+              $
+              {Number(
+                item.price * Number(item.quantity - 1) +
+                  item.price * ((100 - item.categoryDiscount) / 100)
+              ).toFixed(2)}
+            </h2>
           </>
         ) : (
           <h2 className="text-orange-600">
-            $
-            {Number(
-              item.price * Number(item.quantity)
-            ).toFixed(2)}
+            ${Number(item.price * Number(item.quantity)).toFixed(2)}
           </h2>
         )}
       </div>

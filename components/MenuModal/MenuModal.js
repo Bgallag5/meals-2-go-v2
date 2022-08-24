@@ -49,7 +49,7 @@ export default function MenuModal(props) {
           <div className="h-full w-1/2 relative rounded-md overflow-hidden shadow-md shadow-black/30">
             <Image
               className="object-cover"
-              src={require(`../../assets/images/${image}`)}
+              src={require(`../../public/images/${image}`)}
               layout="fill"
               alt={"menu-item"}
             />
