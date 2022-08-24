@@ -29,7 +29,7 @@ export default function MainMenu() {
     if (!menuFilter) return;
 
     items.forEach(item => {
-      //if menuItem.category equals filter, add "active" classname
+      //if menuItem.category equals filter, add "active"
       if (item.dataset.category === menuFilter){
         item.classList.add("menu-item--active")
       }
