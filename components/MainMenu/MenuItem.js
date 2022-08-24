@@ -32,6 +32,7 @@ export default function MenuItem(props) {
           className="object-cover rounded-sm"
           src={require(`../../assets/images/${image}`)}
           layout="fill"
+          alt={"menu-item"}
         />
       </div>
       <div className="flex flex-col gap-2 justify-center w-1/2 md:w-32 h-full my-auto p-1 mx-2 ">

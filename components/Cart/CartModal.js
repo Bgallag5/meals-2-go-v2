@@ -33,7 +33,7 @@ export default function CartModal() {
         toggleCartModal(false)
       }
     });
-  }, []);
+  }, [toggleCartModal]);
 
   return (
     <div

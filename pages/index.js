@@ -16,7 +16,7 @@ export default function Home(props) {
     else if (cookie) {
       toggleCookie();
     }
-  }, []);
+  }, [cookie, toggleCookie]);
 
   return (
     <div className="page__container">

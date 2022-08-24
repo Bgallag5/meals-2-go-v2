@@ -29,6 +29,7 @@ export default function CartItem({ item }) {
           className=""
           layout="fill"
           src={require(`../../assets/images/${item.image}`)}
+          alt={"cart-item"}
         />
       </div>
       <div className="flex flex-col gap-1 text-center w-1/2 md:w-1/3 items-center justify-center">
