@@ -6,7 +6,7 @@
 
 
 * {
-    font-family: 'Saira', sans-serif;
+    font-family: 'Saira', sans-serif !important;
 }
 
 .menu__description{
