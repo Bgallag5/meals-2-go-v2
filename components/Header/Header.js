@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -96,7 +97,7 @@ export default function Header() {
       return;
     }
     setSearchResutls(matchingItems);
-  }, [debounceSearchTerm, menuItems, searchTerm]);
+  }, [debounceSearchTerm]);
 
   //click on results opens item modal
   const handleSearchClick = (item) => {
