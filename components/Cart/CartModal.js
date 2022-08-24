@@ -38,7 +38,6 @@ export default function CartModal() {
   return (
     <div
       onClick={() => toggleCartModal(false)}
-      ref={modalRef}
       className={`${cartModalOpen ? "" : "modal-hidden"}  cart-modal-backdrop`}
     >
       <span
@@ -51,6 +50,7 @@ export default function CartModal() {
         <div
           //stopPropagation - prevent clicks from bubbling to parent (closes modal)
           onClick={(e) => e.stopPropagation()}
+          ref={modalRef}
           className={`cart ${
             cartModalOpen ? "cart-visible" : ""
           } fixed  p-3 flex flex-col  top-0 right-0 overflow-y-scroll   h-screen w-3/4 sm:w-1/2 md:w-1/3 2xl:w-1/4 z-50 bg-white`}

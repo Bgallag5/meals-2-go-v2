@@ -10,7 +10,7 @@
   flex-direction: row;
   width: 90%;
   justify-content: center;
-  margin: 5rem 0rem 1rem 0rem;
+  margin: 5rem auto 1rem auto;
   background: lightgrey;
   border-radius: .3rem;
   box-shadow: lightgrey;

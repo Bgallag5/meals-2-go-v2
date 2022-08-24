@@ -101,7 +101,7 @@ export default function Checkout(props) {
   });
 
   return (
-    <div className="checkout--container ">
+    <div className="checkout--container">
       <div className="checkout w-full md:w-[90%] flex-col md:flex-row">
         <div className="checkout__summary w-full md:w-1/2 flex-col">
           <OrderSummary />
