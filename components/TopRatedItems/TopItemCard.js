@@ -26,7 +26,7 @@ export default function TopItemCard({ item }) {
       >
         <Image
           alt={"top-item"}
-          loading={"lazy"}
+          quality="20"
           className="skeleton object-cover top-menu-img"
           layout="fill"
           src={require(`../../public/images/${image}`)}
